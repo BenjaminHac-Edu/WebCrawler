@@ -6,15 +6,15 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.net.MalformedURLException;
+import java.util.*;
 
 public class Crawler {
     private final String startUrl;
     private final int maxDepth;
     private final Set<String> allowedDomains;
     private final Set<String> visitedUrls = new HashSet<>();
+    private final List<String> outputLines = new ArrayList<>();
 
     public Crawler(String startUrl, int maxDepth, String[] domains) {
         this.startUrl = startUrl;
@@ -23,13 +23,19 @@ public class Crawler {
     }
 
     public void startCrawling() {
-        crawl(startUrl, 0);
+        outputLines.add("input: <a>" + startUrl + "</a>");
+        crawl(startUrl, 1);
+        MarkdownWriter.saveToMarkdown("report.md", outputLines);
     }
 
     private void crawl(String url, int depth) {
-        if (depth > maxDepth) return;
+        if (depth > maxDepth || visitedUrls.contains(url)) return;
 
         visitedUrls.add(url);
+
+        String indent = "-->".repeat(depth - 1);
+        outputLines.add("<br>depth: " + depth);
+
         try {
             Document document = Jsoup.connect(url).get();
             System.out.println("Crawling: " + url);
@@ -38,23 +44,35 @@ public class Crawler {
             Elements headings = document.select("h1, h2, h3, h4, h5, h6");
             for (Element heading : headings) {
                 System.out.println("  ".repeat(depth) + "- " + heading.text());
+                String prefix = "#".repeat(Integer.parseInt(heading.tagName().substring(1)));
+                outputLines.add(prefix + " " + indent + " " + heading.text());
             }
+
+            outputLines.add("");
 
             // Extract links
             Elements links = document.select("a[href]");
             for (Element link : links) {
                 String linkHref = link.absUrl("href");
-                if (isValidUrl(linkHref)) {
+                if (linkHref.isBlank()) continue;
+
+                if (UrlHelper.isBrokenLink(linkHref)) {
+                    outputLines.add("<br>" + indent + " broken link <a>" + linkHref + "</a>");
+                } else if (isValidDomain(linkHref)) {
+                    outputLines.add("<br>" + indent + " link to <a>" + linkHref + "</a>");
                     crawl(linkHref, depth + 1);
                 }
             }
 
+            outputLines.add("<br>");
+
         } catch (IOException e) {
             System.out.println("Broken link: " + url);
+            outputLines.add("<br>" + indent + " broken link <a>" + url + "</a>");
         }
     }
 
-    private boolean isValidUrl(String url) {
-        return allowedDomains.stream().anyMatch(url::contains) && !visitedUrls.contains(url);
+    private boolean isValidDomain(String url) {
+        return allowedDomains.stream().anyMatch(url::contains);
     }
 }
