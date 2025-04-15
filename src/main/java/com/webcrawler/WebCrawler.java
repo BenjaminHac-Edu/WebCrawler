@@ -1,7 +1,11 @@
 package com.webcrawler;
 
 
+import com.webcrawler.crawler.CrawlResult;
 import com.webcrawler.crawler.Crawler;
+import com.webcrawler.crawler.MarkdownWriter;
+
+import java.util.List;
 
 public class WebCrawler {
     public static void main(String[] args) {
@@ -15,6 +19,9 @@ public class WebCrawler {
         String[] domains = args[2].split(",");
 
         Crawler crawler = new Crawler(startUrl, depth, domains);
-        crawler.startCrawling();
+        CrawlResult result = crawler.startCrawling();
+
+        List<String> markdown = MarkdownWriter.toMarkdown(result);
+        MarkdownWriter.saveToMarkdown("report.md", markdown);
     }
 }
