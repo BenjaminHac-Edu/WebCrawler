@@ -38,24 +38,14 @@ public class Crawler {
             extractHeadings(document, depth);
             extractLinks(document, depth);
         } catch (IOException e) {
-            crawlResult.addElement(new PageElement(
-                    PageElement.ElementType.BROKEN_LINK,
-                    depth,
-                    "broken link",
-                    url
-            ));
+            crawlResult.addElement(new BrokenLink(depth, url));
         }
     }
 
     private void extractHeadings(Document document, int depth) {
         Elements headings = document.select("h1, h2, h3, h4, h5, h6");
         for (Element heading : headings) {
-            crawlResult.addElement(new PageElement(
-                    PageElement.ElementType.HEADING,
-                    depth,
-                    heading.text(),
-                    null
-            ));
+            crawlResult.addElement(new Heading(depth, heading.text()));
         }
     }
 
@@ -66,19 +56,9 @@ public class Crawler {
             if (linkHref.isBlank()) continue;
 
             if (UrlHelper.isBrokenLink(linkHref)) {
-                crawlResult.addElement(new PageElement(
-                        PageElement.ElementType.BROKEN_LINK,
-                        depth,
-                        "broken link",
-                        linkHref
-                ));
+                crawlResult.addElement(new BrokenLink(depth, linkHref));
             } else if (isValidDomain(linkHref)) {
-                crawlResult.addElement(new PageElement(
-                        PageElement.ElementType.LINK,
-                        depth,
-                        "link to",
-                        linkHref
-                ));
+                crawlResult.addElement(new Link(depth, linkHref));
                 crawl(linkHref, depth + 1);
             }
         }

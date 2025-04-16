@@ -24,18 +24,14 @@ public class MarkdownWriter {
         int lastDepth = -1;
 
         for (PageElement el : result.getElements()) {
-            String indent = "-->".repeat(el.getDepth() - 1);
 
             if (el.getDepth() != lastDepth) {
                 markdown.add("<br>depth: " + el.getDepth());
                 lastDepth = el.getDepth();
             }
 
-            switch (el.getType()) {
-                case HEADING -> markdown.add("# " + indent + " " + el.getContent());
-                case LINK -> markdown.add("<br>" + indent + " link to <a>" + el.getUrl() + "</a>");
-                case BROKEN_LINK -> markdown.add("<br>" + indent + " broken link <a>" + el.getUrl() + "</a>");
-            }
+            String indent = "-->".repeat(el.getDepth() - 1);
+            markdown.add(el.toMarkdown(indent));
         }
 
         markdown.add("<br>");

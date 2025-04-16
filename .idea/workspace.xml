@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="54985c3f-2603-40f9-87d4-71bb5cd4dd3f" name="Changes" comment="feat: write result to a markdown file">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/CrawlResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/CrawlerObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/PageElement.java" afterDir="false" />
+    <list default="true" id="54985c3f-2603-40f9-87d4-71bb5cd4dd3f" name="Changes" comment="refactor: write crawling result to list of pageElements; convert crawlResult to markdown in class MarkdownWriter">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/BrokenLink.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/Heading.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/Link.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/WebCrawler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/WebCrawler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/Crawler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/Crawler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/MarkdownWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/MarkdownWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/PageElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/PageElement.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,7 +187,7 @@
       <option name="presentableId" value="Default" />
       <updated>1743330571111</updated>
       <workItem from="1744625897448" duration="4669000" />
-      <workItem from="1744702261285" duration="3128000" />
+      <workItem from="1744702261285" duration="4267000" />
     </task>
     <task id="LOCAL-00001" summary="initial setup">
       <created>1743330681308</created>
@@ -211,7 +212,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744630706254</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="refactor: write crawling result to list of pageElements; convert crawlResult to markdown in class MarkdownWriter">
+      <option name="closed" value="true" />
+      <created>1744706030413</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1744706030413</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,7 +251,8 @@
     <MESSAGE value="initial setup" />
     <MESSAGE value="feat: implement 1st version of the WebCrawler" />
     <MESSAGE value="feat: write result to a markdown file" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: write result to a markdown file" />
+    <MESSAGE value="refactor: write crawling result to list of pageElements; convert crawlResult to markdown in class MarkdownWriter" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: write crawling result to list of pageElements; convert crawlResult to markdown in class MarkdownWriter" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
