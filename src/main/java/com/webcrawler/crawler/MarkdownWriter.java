@@ -22,19 +22,29 @@ public class MarkdownWriter {
         markdown.add("input: <a>" + result.getStartUrl() + "</a>");
 
         int lastDepth = -1;
+        boolean lastElementWasAHeading = false;
 
-        for (PageElement el : result.getElements()) {
+        for (PageElement pageElement : result.getElements()) {
+            int depth = pageElement.getDepth();
 
-            if (el.getDepth() != lastDepth) {
-                markdown.add("<br>depth: " + el.getDepth());
-                lastDepth = el.getDepth();
+            if (depth != lastDepth) {
+                markdown.add("<br>depth: " + depth);
+                lastDepth = depth;
             }
 
-            String indent = "-->".repeat(el.getDepth() - 1);
-            markdown.add(el.toMarkdown(indent));
+            if (!lastElementWasAHeading && pageElement instanceof Heading) {
+                lastElementWasAHeading = true;
+            } else if (lastElementWasAHeading && !(pageElement instanceof Heading)) {
+                markdown.add("");
+                lastElementWasAHeading = false;
+            }
+            markdown.add(pageElement.toMarkdown(getIndentation(depth)));
         }
 
-        markdown.add("<br>");
         return markdown;
+    }
+
+    private static String getIndentation(int depth) {
+        return "--".repeat(depth - 1) + (depth > 1 ? ">" : "");
     }
 }
