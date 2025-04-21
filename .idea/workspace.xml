@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="54985c3f-2603-40f9-87d4-71bb5cd4dd3f" name="Changes" comment="test: add testcases for PageElement subclasses">
-      <change afterPath="$PROJECT_DIR$/src/test/java/MarkdownWriterTest.java" afterDir="false" />
+    <list default="true" id="54985c3f-2603-40f9-87d4-71bb5cd4dd3f" name="Changes" comment="test: add testcases for MarkdownWriter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/MarkdownWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/MarkdownWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/BrokenLink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/BrokenLink.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/Crawler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/Crawler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/Heading.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/Heading.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/Link.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/Link.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CrawlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CrawlerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,9 +61,12 @@
     "Application.WebCrawler google.com depth:2.executor": "Run",
     "Application.WebCrawler.executor": "Run",
     "JUnit.All in WebCrawler.executor": "Coverage",
+    "JUnit.CrawlerTest.executor": "Run",
     "JUnit.CrawlerTest.testValidUrl.executor": "Run",
     "JUnit.MarkdownWriterTest.executor": "Run",
+    "JUnit.MarkdownWriterTest.testEmptyCrawlResult.executor": "Run",
     "JUnit.MarkdownWriterTest.testIndentationFormatting.executor": "Run",
+    "JUnit.MarkdownWriterTest.testMultipleElementsDifferentDepths.executor": "Run",
     "JUnit.MarkdownWriterTest.testSaveMarkdown.executor": "Run",
     "JUnit.MarkdownWriterTest.testSingleHeadingAtDepth1.executor": "Run",
     "JUnit.PageElementTest.executor": "Run",
@@ -129,6 +135,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CrawlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="WebCrawler" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CrawlerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MarkdownWriterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WebCrawler" />
       <option name="PACKAGE_NAME" value="" />
@@ -158,33 +173,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MarkdownWriterTest.testSingleHeadingAtDepth1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="WebCrawler" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MarkdownWriterTest" />
-      <option name="METHOD_NAME" value="testSingleHeadingAtDepth1" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.WebCrawler example.com depth:2" />
       <item itemvalue="Application.WebCrawler google.com depth:1" />
       <item itemvalue="Application.WebCrawler aau.at depth:1" />
+      <item itemvalue="JUnit.CrawlerTest" />
       <item itemvalue="JUnit.MarkdownWriterTest.testEmptyCrawlResult" />
       <item itemvalue="JUnit.MarkdownWriterTest.testMultipleElementsDifferentDepths" />
       <item itemvalue="JUnit.All in WebCrawler" />
       <item itemvalue="JUnit.MarkdownWriterTest" />
-      <item itemvalue="JUnit.MarkdownWriterTest.testSingleHeadingAtDepth1" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in WebCrawler" />
+        <item itemvalue="JUnit.CrawlerTest" />
         <item itemvalue="JUnit.MarkdownWriterTest" />
         <item itemvalue="JUnit.MarkdownWriterTest.testMultipleElementsDifferentDepths" />
         <item itemvalue="JUnit.MarkdownWriterTest.testEmptyCrawlResult" />
-        <item itemvalue="JUnit.MarkdownWriterTest.testSingleHeadingAtDepth1" />
       </list>
     </recent_temporary>
   </component>
@@ -206,7 +211,7 @@
       <updated>1743330571111</updated>
       <workItem from="1744625897448" duration="4669000" />
       <workItem from="1744702261285" duration="4267000" />
-      <workItem from="1744791691968" duration="2268000" />
+      <workItem from="1744791691968" duration="3084000" />
     </task>
     <task id="LOCAL-00001" summary="initial setup">
       <created>1743330681308</created>
@@ -255,7 +260,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744792595214</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="test: add testcases for MarkdownWriter">
+      <option name="closed" value="true" />
+      <created>1744794317534</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1744794317534</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -289,13 +302,14 @@
     <MESSAGE value="refactor: write crawling result to list of pageElements; convert crawlResult to markdown in class MarkdownWriter" />
     <MESSAGE value="refactor: make PageElement abstract, add classes Heading, Link &amp; BrokenLink that extent from PageElement" />
     <MESSAGE value="test: add testcases for PageElement subclasses" />
-    <option name="LAST_COMMIT_MESSAGE" value="test: add testcases for PageElement subclasses" />
+    <MESSAGE value="test: add testcases for MarkdownWriter" />
+    <option name="LAST_COMMIT_MESSAGE" value="test: add testcases for MarkdownWriter" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/WebCrawler$All_in_WebCrawler.ic" NAME="All in WebCrawler Coverage Results" MODIFIED="1744793012888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/WebCrawler$All_in_WebCrawler.ic" NAME="All in WebCrawler Coverage Results" MODIFIED="1744794579263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>

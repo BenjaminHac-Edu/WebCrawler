@@ -8,6 +8,10 @@ public class BrokenLink extends PageElement {
         this.url = url;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
     @Override
     public String toMarkdown(String indent) {
         return "<br>" + indent + " broken link <a>" + url + "</a>";

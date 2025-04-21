@@ -8,6 +8,10 @@ public class Heading extends PageElement{
         this.content = content;
     }
 
+    public String getContent() {
+        return content;
+    }
+
     @Override
     public String toMarkdown(String indent) {
         return "# " + indent + " " + content;

@@ -33,7 +33,7 @@ public class Crawler {
         visitedUrls.add(url);
 
         try {
-            Document document = Jsoup.connect(url).get();
+            Document document = fetchDocument(url);
 
             extractHeadings(document, depth);
             extractLinks(document, depth);
@@ -64,6 +64,10 @@ public class Crawler {
         }
     }
 
+    // for testing
+    protected Document fetchDocument(String url) throws IOException {
+        return Jsoup.connect(url).get();
+    }
 
     private boolean isValidDomain(String url) {
         return allowedDomains.stream().anyMatch(url::contains);
