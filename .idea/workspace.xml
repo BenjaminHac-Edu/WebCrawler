@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="54985c3f-2603-40f9-87d4-71bb5cd4dd3f" name="Changes" comment="test: add testcases for MarkdownWriter">
+    <list default="true" id="54985c3f-2603-40f9-87d4-71bb5cd4dd3f" name="Changes" comment="misc: add README.md, able to run project via maven on command-line">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/BrokenLink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/BrokenLink.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/Crawler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/Crawler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/Heading.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/Heading.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/Link.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/Link.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CrawlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CrawlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +68,9 @@
     "JUnit.MarkdownWriterTest.testSingleHeadingAtDepth1.executor": "Run",
     "JUnit.PageElementTest.executor": "Run",
     "JUnit.UrlHelperTest.executor": "Run",
+    "Maven.WebCrawler [clean,compile...].executor": "Run",
+    "Maven.WebCrawler [clean,package].executor": "Run",
+    "Maven.WebCrawler [clean,test].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -88,6 +88,13 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean test" />
+      <command value="mvn clean compile assembly:single" />
+      <command value="mvn clean package" />
+    </option>
+  </component>
   <component name="RunManager" selected="JUnit.All in WebCrawler">
     <configuration name="WebCrawler aau.at depth:1" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.webcrawler.WebCrawler" />
@@ -212,6 +219,7 @@
       <workItem from="1744625897448" duration="4669000" />
       <workItem from="1744702261285" duration="4267000" />
       <workItem from="1744791691968" duration="3084000" />
+      <workItem from="1745226153837" duration="1782000" />
     </task>
     <task id="LOCAL-00001" summary="initial setup">
       <created>1743330681308</created>
@@ -268,7 +276,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744794317534</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="test: add testcases for Crawler">
+      <option name="closed" value="true" />
+      <created>1745226276610</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1745226276610</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -303,7 +319,8 @@
     <MESSAGE value="refactor: make PageElement abstract, add classes Heading, Link &amp; BrokenLink that extent from PageElement" />
     <MESSAGE value="test: add testcases for PageElement subclasses" />
     <MESSAGE value="test: add testcases for MarkdownWriter" />
-    <option name="LAST_COMMIT_MESSAGE" value="test: add testcases for MarkdownWriter" />
+    <MESSAGE value="test: add testcases for Crawler" />
+    <option name="LAST_COMMIT_MESSAGE" value="test: add testcases for Crawler" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
