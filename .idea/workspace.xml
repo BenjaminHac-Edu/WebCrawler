@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="54985c3f-2603-40f9-87d4-71bb5cd4dd3f" name="Changes" comment="misc: add README.md, able to run project via maven on command-line">
+    <list default="true" id="54985c3f-2603-40f9-87d4-71bb5cd4dd3f" name="Changes" comment="refactor: rename variables to better names; add empty lines for code structure, etc.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/WebCrawler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/WebCrawler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/Crawler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/Crawler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/MarkdownWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/MarkdownWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CrawlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CrawlerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/MarkdownWriterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/MarkdownWriterTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,49 +44,50 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.WebCrawler aau.at depth:1.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.WebCrawler aau.at depth:2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebCrawler drauphilharmonie.com depth:2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebCrawler example.com depth:2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebCrawler example.com depth:3.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebCrawler example.com.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebCrawler google.com 2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebCrawler google.com depth:1.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebCrawler google.com depth:2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebCrawler.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.All in WebCrawler.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.CrawlerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CrawlerTest.testValidUrl.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.MarkdownWriterTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.MarkdownWriterTest.testEmptyCrawlResult.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.MarkdownWriterTest.testIndentationFormatting.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.MarkdownWriterTest.testMultipleElementsDifferentDepths.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.MarkdownWriterTest.testSaveMarkdown.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.MarkdownWriterTest.testSingleHeadingAtDepth1.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PageElementTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UrlHelperTest.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.WebCrawler [clean,compile...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.WebCrawler [clean,package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.WebCrawler [clean,test].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Uni/CleanCode/WebCrawler/src/main/java/org/webcrawler/Main.java&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Java&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.WebCrawler aau.at depth:1.executor": "Debug",
+    "Application.WebCrawler aau.at depth:2.executor": "Run",
+    "Application.WebCrawler drauphilharmonie.com depth:2.executor": "Run",
+    "Application.WebCrawler example.com depth:2.executor": "Run",
+    "Application.WebCrawler example.com depth:3.executor": "Run",
+    "Application.WebCrawler example.com.executor": "Run",
+    "Application.WebCrawler google.com 2.executor": "Run",
+    "Application.WebCrawler google.com depth:1.executor": "Run",
+    "Application.WebCrawler google.com depth:2.executor": "Run",
+    "Application.WebCrawler.executor": "Run",
+    "JUnit.All in WebCrawler.executor": "Coverage",
+    "JUnit.CrawlerTest.executor": "Run",
+    "JUnit.CrawlerTest.testValidUrl.executor": "Run",
+    "JUnit.MarkdownWriterTest.executor": "Run",
+    "JUnit.MarkdownWriterTest.testEmptyCrawlResult.executor": "Run",
+    "JUnit.MarkdownWriterTest.testIndentationFormatting.executor": "Run",
+    "JUnit.MarkdownWriterTest.testMultipleElementsDifferentDepths.executor": "Run",
+    "JUnit.MarkdownWriterTest.testSaveMarkdown.executor": "Run",
+    "JUnit.MarkdownWriterTest.testSingleHeadingAtDepth1.executor": "Run",
+    "JUnit.MarkdownWriterTest.testWriteToFile.executor": "Run",
+    "JUnit.PageElementTest.executor": "Run",
+    "JUnit.UrlHelperTest.executor": "Run",
+    "Maven.WebCrawler [clean,compile...].executor": "Run",
+    "Maven.WebCrawler [clean,package].executor": "Run",
+    "Maven.WebCrawler [clean,test].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Uni/CleanCode/WebCrawler/src/main/java/org/webcrawler/Main.java",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Java",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn clean test" />
@@ -163,16 +160,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MarkdownWriterTest.testEmptyCrawlResult" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="WebCrawler" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MarkdownWriterTest" />
-      <option name="METHOD_NAME" value="testEmptyCrawlResult" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="MarkdownWriterTest.testMultipleElementsDifferentDepths" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WebCrawler" />
       <option name="PACKAGE_NAME" value="" />
@@ -183,12 +170,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MarkdownWriterTest.testWriteToFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="WebCrawler" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MarkdownWriterTest" />
+      <option name="METHOD_NAME" value="testWriteToFile" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.WebCrawler example.com depth:2" />
       <item itemvalue="Application.WebCrawler google.com depth:1" />
       <item itemvalue="Application.WebCrawler aau.at depth:1" />
+      <item itemvalue="JUnit.MarkdownWriterTest.testWriteToFile" />
       <item itemvalue="JUnit.CrawlerTest" />
-      <item itemvalue="JUnit.MarkdownWriterTest.testEmptyCrawlResult" />
       <item itemvalue="JUnit.MarkdownWriterTest.testMultipleElementsDifferentDepths" />
       <item itemvalue="JUnit.All in WebCrawler" />
       <item itemvalue="JUnit.MarkdownWriterTest" />
@@ -196,10 +193,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in WebCrawler" />
+        <item itemvalue="JUnit.MarkdownWriterTest.testWriteToFile" />
         <item itemvalue="JUnit.CrawlerTest" />
         <item itemvalue="JUnit.MarkdownWriterTest" />
         <item itemvalue="JUnit.MarkdownWriterTest.testMultipleElementsDifferentDepths" />
-        <item itemvalue="JUnit.MarkdownWriterTest.testEmptyCrawlResult" />
       </list>
     </recent_temporary>
   </component>
@@ -224,7 +221,7 @@
       <workItem from="1744791691968" duration="3084000" />
       <workItem from="1745226153837" duration="1782000" />
       <workItem from="1745339106872" duration="240000" />
-      <workItem from="1745588617412" duration="1195000" />
+      <workItem from="1745588617412" duration="1736000" />
     </task>
     <task id="LOCAL-00001" summary="initial setup">
       <created>1743330681308</created>
@@ -297,7 +294,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745339134568</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="refactor: rename variables to better names; add empty lines for code structure, etc.">
+      <option name="closed" value="true" />
+      <created>1745589961137</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1745589961137</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -334,7 +339,8 @@
     <MESSAGE value="test: add testcases for MarkdownWriter" />
     <MESSAGE value="test: add testcases for Crawler" />
     <MESSAGE value="misc: add README.md, able to run project via maven on command-line" />
-    <option name="LAST_COMMIT_MESSAGE" value="misc: add README.md, able to run project via maven on command-line" />
+    <MESSAGE value="refactor: rename variables to better names; add empty lines for code structure, etc." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: rename variables to better names; add empty lines for code structure, etc." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

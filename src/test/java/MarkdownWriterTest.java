@@ -2,6 +2,11 @@ import com.webcrawler.crawler.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -62,5 +67,19 @@ public class MarkdownWriterTest {
 
         assertEquals("input: <a>http://example.com</a>", markdown);
         assertEquals(1, markdown.lines().count());
+    }
+
+    @Test
+    public void testWriteToFile() throws IOException {
+        String filename = "testfile.md";
+        List<String> content = MarkdownWriter.toMarkdownLines(result);
+        String expected = String.join("\n", content);
+
+        MarkdownWriter.saveToMarkdown(filename, content);
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line = reader.readLine();
+            assertEquals(expected, line);
+        }
     }
 }
