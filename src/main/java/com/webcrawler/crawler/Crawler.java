@@ -64,7 +64,7 @@ public class Crawler {
         }
     }
 
-    // for testing
+    // also for overriding to test class
     protected Document fetchDocument(String url) throws IOException {
         return Jsoup.connect(url).get();
     }

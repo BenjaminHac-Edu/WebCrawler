@@ -15,13 +15,13 @@ public class WebCrawler {
         }
 
         String startUrl = args[0];
-        int depth = Integer.parseInt(args[1]);
+        int choosenDepth = Integer.parseInt(args[1]);
         String[] domains = args[2].split(",");
 
-        Crawler crawler = new Crawler(startUrl, depth, domains);
-        CrawlResult result = crawler.startCrawling();
+        Crawler crawler = new Crawler(startUrl, choosenDepth, domains);
+        CrawlResult crawlResult = crawler.startCrawling();
 
-        List<String> markdown = MarkdownWriter.toMarkdown(result);
-        MarkdownWriter.saveToMarkdown("report.md", markdown);
+        List<String> markdownText = MarkdownWriter.toMarkdownLines(crawlResult);
+        MarkdownWriter.saveToMarkdown("report.md", markdownText);
     }
 }

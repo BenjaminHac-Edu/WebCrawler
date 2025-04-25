@@ -17,7 +17,7 @@ public class MarkdownWriterTest {
     void testSingleHeadingAtDepth1() {
         result.addElement(new Heading(1, "Welcome"));
 
-        String markdown = String.join("\n", MarkdownWriter.toMarkdown(result));
+        String markdown = String.join("\n", MarkdownWriter.toMarkdownLines(result));
 
         assertTrue(markdown.contains("input: <a>http://example.com</a>"));
         assertTrue(markdown.contains("<br>depth: 1"));
@@ -32,7 +32,7 @@ public class MarkdownWriterTest {
         result.addElement(new BrokenLink(2, "http://broken-link.com"));
         result.addElement(new Heading(3, "Sub-subsection"));
 
-        String markdown = String.join("\n", MarkdownWriter.toMarkdown(result));
+        String markdown = String.join("\n", MarkdownWriter.toMarkdownLines(result));
 
         assertTrue(markdown.contains("<br>depth: 1"));
         assertTrue(markdown.contains("#  Title"));
@@ -50,7 +50,7 @@ public class MarkdownWriterTest {
     void testIndentationFormatting() {
         result.addElement(new Heading(3, "Deep Header"));
 
-        String markdown = String.join("\n", MarkdownWriter.toMarkdown(result));
+        String markdown = String.join("\n", MarkdownWriter.toMarkdownLines(result));
 
         assertTrue(markdown.contains("<br>depth: 3"));
         assertTrue(markdown.contains("# ----> Deep Header"));
@@ -58,7 +58,7 @@ public class MarkdownWriterTest {
 
     @Test
     void testEmptyCrawlResult() {
-        String markdown = String.join("\n", MarkdownWriter.toMarkdown(result));
+        String markdown = String.join("\n", MarkdownWriter.toMarkdownLines(result));
 
         assertEquals("input: <a>http://example.com</a>", markdown);
         assertEquals(1, markdown.lines().count());

@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class UrlHelperTest {
     @Test
     public void testWorkingLink() {
-        // A well-known working URL
+        // A working URL
         String url = "https://www.google.com";
         boolean result = UrlHelper.isBrokenLink(url);
         assertFalse(result, "Expected Google to be a working link");

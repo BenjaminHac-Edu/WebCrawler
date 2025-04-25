@@ -17,31 +17,32 @@ public class MarkdownWriter {
         }
     }
 
-    public static List<String> toMarkdown(CrawlResult result) {
-        List<String> markdown = new ArrayList<>();
-        markdown.add("input: <a>" + result.getStartUrl() + "</a>");
+    public static List<String> toMarkdownLines(CrawlResult result) {
+        List<String> markdownResult = new ArrayList<>();
+        markdownResult.add("input: <a>" + result.getStartUrl() + "</a>");
 
         int lastDepth = -1;
-        boolean lastElementWasAHeading = false;
+        boolean wasLastElementAHeading = false;
 
         for (PageElement pageElement : result.getElements()) {
             int depth = pageElement.getDepth();
 
             if (depth != lastDepth) {
-                markdown.add("<br>depth: " + depth);
+                markdownResult.add("<br>depth: " + depth);
                 lastDepth = depth;
             }
 
-            if (!lastElementWasAHeading && pageElement instanceof Heading) {
-                lastElementWasAHeading = true;
-            } else if (lastElementWasAHeading && !(pageElement instanceof Heading)) {
-                markdown.add("");
-                lastElementWasAHeading = false;
+            if (!wasLastElementAHeading && pageElement instanceof Heading)
+                wasLastElementAHeading = true;
+            else if (wasLastElementAHeading && !(pageElement instanceof Heading)) {
+                markdownResult.add(""); // empty line between headings and links (cleaner Format)
+                wasLastElementAHeading = false;
             }
-            markdown.add(pageElement.toMarkdown(getIndentation(depth)));
+
+            markdownResult.add(pageElement.toMarkdown(getIndentation(depth)));
         }
 
-        return markdown;
+        return markdownResult;
     }
 
     private static String getIndentation(int depth) {

@@ -73,13 +73,12 @@ public class CrawlerTest {
         Crawler crawler = new TestableCrawler("http://allowed.com", 1, domains, nestedHtml);
         CrawlResult result = crawler.startCrawling();
 
-        // Should not go beyond depth 1
         assertEquals(1, result.getElements().stream().filter(e -> e instanceof Link).count());
     }
 
     @Test
     void testBrokenLinkIsRecorded() {
-        // Link that won't resolve or is known broken (simulate with override or force exception)
+        // Link that won't resolve or is known broken
         Crawler crawler = new Crawler("http://nonexistent.com", 1, new String[]{"nonexistent.com"}) {
             @Override
             protected Document fetchDocument(String url) throws IOException {
