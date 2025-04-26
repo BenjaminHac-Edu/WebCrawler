@@ -3,6 +3,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
@@ -80,6 +81,9 @@ public class MarkdownWriterTest {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line = reader.readLine();
             assertEquals(expected, line);
+        }finally{
+            File file = new File(filename);
+            file.deleteOnExit();
         }
     }
 }
