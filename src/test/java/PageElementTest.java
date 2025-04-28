@@ -8,13 +8,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class PageElementTest {
     @Test
     void testHeadingDepth() {
-        Heading heading = new Heading(2, "Section Title");
+        Heading heading = new Heading(2, "h1","Section Title");
         assertEquals(2, heading.getDepth());
     }
 
     @Test
     void testHeadingToMarkdown() {
-        Heading heading = new Heading(2, "Section Title");
+        Heading heading = new Heading(2, "h1", "Section Title");
         String result = heading.toMarkdown("-->");
         assertEquals("# --> Section Title", result);
     }

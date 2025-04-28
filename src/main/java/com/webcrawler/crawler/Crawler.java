@@ -45,7 +45,7 @@ public class Crawler {
     private void extractHeadings(Document document, int depth) {
         Elements headings = document.select("h1, h2, h3, h4, h5, h6");
         for (Element heading : headings) {
-            crawlResult.addElement(new Heading(depth, heading.text()));
+            crawlResult.addElement(new Heading(depth, heading.tagName(), heading.text()));
         }
     }
 

@@ -21,7 +21,7 @@ public class MarkdownWriterTest {
 
     @Test
     void testSingleHeadingAtDepth1() {
-        result.addElement(new Heading(1, "Welcome"));
+        result.addElement(new Heading(1, "h1", "Welcome"));
 
         String markdown = String.join("\n", MarkdownWriter.toMarkdownLines(result));
 
@@ -32,11 +32,11 @@ public class MarkdownWriterTest {
 
     @Test
     void testMultipleElementsDifferentDepths() {
-        result.addElement(new Heading(1, "Title"));
+        result.addElement(new Heading(1, "h1", "Title"));
         result.addElement(new Link(1, "http://next.com"));
-        result.addElement(new Heading(2, "Subsection"));
+        result.addElement(new Heading(2, "h2", "Subsection"));
         result.addElement(new BrokenLink(2, "http://broken-link.com"));
-        result.addElement(new Heading(3, "Sub-subsection"));
+        result.addElement(new Heading(3, "h3", "Sub-subsection"));
 
         String markdown = String.join("\n", MarkdownWriter.toMarkdownLines(result));
 
@@ -45,16 +45,16 @@ public class MarkdownWriterTest {
         assertTrue(markdown.contains("<br> link to <a>http://next.com</a>"));
 
         assertTrue(markdown.contains("<br>depth: 2"));
-        assertTrue(markdown.contains("# --> Subsection"));
+        assertTrue(markdown.contains("## --> Subsection"));
         assertTrue(markdown.contains("<br>--> broken link <a>http://broken-link.com</a>"));
 
         assertTrue(markdown.contains("<br>depth: 3"));
-        assertTrue(markdown.endsWith("# ----> Sub-subsection"));
+        assertTrue(markdown.endsWith("### ----> Sub-subsection"));
     }
 
     @Test
     void testIndentationFormatting() {
-        result.addElement(new Heading(3, "Deep Header"));
+        result.addElement(new Heading(3, "h1", "Deep Header"));
 
         String markdown = String.join("\n", MarkdownWriter.toMarkdownLines(result));
 

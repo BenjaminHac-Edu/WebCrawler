@@ -1,10 +1,12 @@
 package com.webcrawler.crawler;
 
 public class Heading extends PageElement{
+    private final int tag;
     private final String content;
 
-    public Heading(int depth, String content) {
+    public Heading(int depth, String tagName, String content) {
         super(depth);
+        this.tag = Integer.parseInt(tagName.substring(tagName.length() - 1));
         this.content = content;
     }
 
@@ -14,6 +16,6 @@ public class Heading extends PageElement{
 
     @Override
     public String toMarkdown(String indent) {
-        return "# " + indent + " " + content;
+        return ("#".repeat(tag)) + " " + indent + " " + content;
     }
 }
