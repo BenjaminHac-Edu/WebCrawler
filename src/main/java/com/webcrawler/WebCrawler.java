@@ -15,10 +15,10 @@ public class WebCrawler {
         }
 
         String startUrl = args[0];
-        int choosenDepth = Integer.parseInt(args[1]);
+        int chosenDepth = Integer.parseInt(args[1]);
         String[] domains = args[2].split(",");
 
-        Crawler crawler = new Crawler(startUrl, choosenDepth, domains);
+        Crawler crawler = new Crawler(startUrl, chosenDepth, domains);
         CrawlResult crawlResult = crawler.startCrawling();
 
         List<String> markdownText = MarkdownWriter.toMarkdownLines(crawlResult);
