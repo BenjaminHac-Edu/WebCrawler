@@ -1,4 +1,8 @@
-package com.webcrawler.crawler;
+package com.webcrawler.output;
+
+import com.webcrawler.crawler.CrawlResult;
+import com.webcrawler.crawler.Heading;
+import com.webcrawler.crawler.PageElement;
 
 import java.io.FileWriter;
 import java.io.IOException;

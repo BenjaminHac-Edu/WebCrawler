@@ -1,4 +1,5 @@
 import com.webcrawler.crawler.*;
+import com.webcrawler.output.MarkdownWriter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
