@@ -22,4 +22,8 @@ public class CrawlResult {
     public List<PageElement> getElements() {
         return elements;
     }
+
+    public void addAll(List<PageElement> otherElements) {
+        this.elements.addAll(otherElements);
+    }
 }
