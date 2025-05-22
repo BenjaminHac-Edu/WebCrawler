@@ -3,8 +3,8 @@ package com.webcrawler.crawler;
 public class Link extends PageElement{
     private final String url;
 
-    public Link(int depth, String url) {
-        super(depth);
+    public Link(int depth, int order, String parentUrl, String url) {
+        super(depth, order, parentUrl);
         this.url = url;
     }
 

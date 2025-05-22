@@ -72,8 +72,8 @@ public class ConcurrentCrawlerTest {
         assertNotNull(result);
         assertEquals("http://site1.com,http://site2.com", result.getStartUrl());
 
-        long headingCount = result.getElements().stream().filter(e -> e instanceof Heading).count();
-        long linkCount = result.getElements().stream().filter(e -> e instanceof Link).count();
+        long headingCount = result.getSortedElements().stream().filter(e -> e instanceof Heading).count();
+        long linkCount = result.getSortedElements().stream().filter(e -> e instanceof Link).count();
 
         assertEquals(4, headingCount); // 1 heading * 4 fetches (2 sites + 2 links)
         assertEquals(4, linkCount);    // 1 link * 4 fetches
@@ -101,7 +101,7 @@ public class ConcurrentCrawlerTest {
 
         // Then
         assertNotNull(result);
-        long brokenCount = result.getElements().stream().filter(e -> e instanceof BrokenLink).count();
+        long brokenCount = result.getSortedElements().stream().filter(e -> e instanceof BrokenLink).count();
         assertEquals(1, brokenCount);
     }
 

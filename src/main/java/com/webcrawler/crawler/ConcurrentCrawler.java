@@ -31,6 +31,7 @@ public class ConcurrentCrawler {
         crawlResult = new CrawlResult(urlInput.toString());
 
         for (CrawlerConfig config : configs) {
+            crawlResult.addRootUrl(config.getStartUrl());
             submitTask(config.getStartUrl(), 1, config, latch);
         }
 
