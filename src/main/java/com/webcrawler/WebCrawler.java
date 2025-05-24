@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WebCrawler {
-    public static final int numberOfAllowedThreads = 5;
+    public static final int numberOfAllowedThreads = 8;
 
     public static void main(String[] args) {
         if (args.length < 3) {

@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="54985c3f-2603-40f9-87d4-71bb5cd4dd3f" name="Changes" comment="feat: reformated the output file;&#10;feat: sorted the found elements depending on the location of the crawled website">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/ErrorElement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/crawler/CrawlTaskTest.java" afterDir="false" />
+    <list default="true" id="54985c3f-2603-40f9-87d4-71bb5cd4dd3f" name="Changes" comment="feat: add better Error Handling, save errors into the report">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/CrawlTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/CrawlTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/WebCrawler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/WebCrawler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/HttpStatusChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/HttpStatusChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/JsoupHttpStatusChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/JsoupHttpStatusChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/output/MarkdownWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/output/MarkdownWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/MarkdownWriterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/MarkdownWriterTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +62,7 @@
     "Application.WebCrawler example.com depth:2.executor": "Run",
     "Application.WebCrawler example.com depth:3.executor": "Run",
     "Application.WebCrawler example.com,google.com depth:1.executor": "Run",
+    "Application.WebCrawler example.com,google.com depth:2.executor": "Run",
     "Application.WebCrawler example.com.executor": "Run",
     "Application.WebCrawler google.com 2.executor": "Run",
     "Application.WebCrawler google.com depth:1.executor": "Run",
@@ -73,7 +76,9 @@
     "JUnit.CrawlerTest.executor": "Run",
     "JUnit.CrawlerTest.testCrawlAddsHeadingAndLink.executor": "Run",
     "JUnit.CrawlerTest.testValidUrl.executor": "Run",
+    "JUnit.ErrorElementTest.executor": "Run",
     "JUnit.MarkdownWriterTest.executor": "Run",
+    "JUnit.MarkdownWriterTest.testDeepElementsAreIncludedInMarkdownOutput.executor": "Run",
     "JUnit.MarkdownWriterTest.testEmptyCrawlResult.executor": "Run",
     "JUnit.MarkdownWriterTest.testIndentationFormatting.executor": "Run",
     "JUnit.MarkdownWriterTest.testMultipleElementsDifferentDepths.executor": "Run",
@@ -82,7 +87,7 @@
     "JUnit.MarkdownWriterTest.testWriteToFile.executor": "Run",
     "JUnit.PageElementTest.executor": "Run",
     "JUnit.UrlHelperTest.executor": "Run",
-    "JUnit.java in WebCrawler.executor": "Coverage",
+    "JUnit.java in WebCrawler.executor": "Run",
     "Maven.WebCrawler [clean,compile...].executor": "Run",
     "Maven.WebCrawler [clean,package].executor": "Run",
     "Maven.WebCrawler [clean,test].executor": "Run",
@@ -113,7 +118,7 @@
       <command value="mvn clean package" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ErrorElementTest">
+  <component name="RunManager" selected="Application.WebCrawler example.com,google.com depth:2">
     <configuration name="WebCrawler aau.at depth:1" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.webcrawler.WebCrawler" />
       <module name="WebCrawler" />
@@ -136,10 +141,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WebCrawler example.com,google.com depth:1" type="Application" factoryName="Application">
+    <configuration name="WebCrawler example.com,google.com depth:2" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.webcrawler.WebCrawler" />
       <module name="WebCrawler" />
-      <option name="PROGRAM_PARAMETERS" value="https://google.com,https://example.com 1 google.com,example.com,iana.org" />
+      <option name="PROGRAM_PARAMETERS" value="https://google.com,https://example.com 2 google.com,example.com,iana.org" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -182,21 +187,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MarkdownWriterTest.testWriteToFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MarkdownWriterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WebCrawler" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="MarkdownWriterTest" />
-      <option name="METHOD_NAME" value="testWriteToFile" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PageElementTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MarkdownWriterTest.testDeepElementsAreIncludedInMarkdownOutput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WebCrawler" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="PageElementTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="MarkdownWriterTest" />
+      <option name="METHOD_NAME" value="testDeepElementsAreIncludedInMarkdownOutput" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -212,21 +217,21 @@
     <list>
       <item itemvalue="Application.WebCrawler example.com depth:2" />
       <item itemvalue="Application.WebCrawler google.com depth:1" />
-      <item itemvalue="Application.WebCrawler example.com,google.com depth:1" />
+      <item itemvalue="Application.WebCrawler example.com,google.com depth:2" />
       <item itemvalue="Application.WebCrawler aau.at depth:1" />
       <item itemvalue="JUnit.CrawlTaskTest" />
       <item itemvalue="JUnit.ErrorElementTest" />
-      <item itemvalue="JUnit.MarkdownWriterTest.testWriteToFile" />
-      <item itemvalue="JUnit.PageElementTest" />
+      <item itemvalue="JUnit.MarkdownWriterTest.testDeepElementsAreIncludedInMarkdownOutput" />
+      <item itemvalue="JUnit.MarkdownWriterTest" />
       <item itemvalue="JUnit.java in WebCrawler" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MarkdownWriterTest" />
+        <item itemvalue="JUnit.MarkdownWriterTest.testDeepElementsAreIncludedInMarkdownOutput" />
         <item itemvalue="JUnit.ErrorElementTest" />
         <item itemvalue="JUnit.java in WebCrawler" />
         <item itemvalue="JUnit.CrawlTaskTest" />
-        <item itemvalue="JUnit.MarkdownWriterTest.testWriteToFile" />
-        <item itemvalue="JUnit.PageElementTest" />
       </list>
     </recent_temporary>
   </component>
@@ -270,7 +275,7 @@
       <workItem from="1747845199698" duration="1565000" />
       <workItem from="1747934093465" duration="799000" />
       <workItem from="1748008098443" duration="133000" />
-      <workItem from="1748069120809" duration="992000" />
+      <workItem from="1748069120809" duration="2894000" />
     </task>
     <task id="LOCAL-00001" summary="initial setup">
       <created>1743330681308</created>
@@ -415,7 +420,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747934871555</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="feat: add better Error Handling, save errors into the report">
+      <option name="closed" value="true" />
+      <created>1748070406818</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1748070406818</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -461,7 +474,8 @@
     <MESSAGE value="feat: implement concurrent crawling" />
     <MESSAGE value="test: add testcase for concurrentCrawler &amp; CrawlTask" />
     <MESSAGE value="feat: reformated the output file;&#10;feat: sorted the found elements depending on the location of the crawled website" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: reformated the output file;&#10;feat: sorted the found elements depending on the location of the crawled website" />
+    <MESSAGE value="feat: add better Error Handling, save errors into the report" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add better Error Handling, save errors into the report" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -483,11 +497,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/webcrawler/WebCrawler.java</url>
           <line>30</line>
           <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/webcrawler/output/MarkdownWriter.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -6,10 +6,7 @@ import com.webcrawler.crawler.PageElement;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MarkdownWriter {
     public static void saveToMarkdown(String filename, List<String> lines) {
@@ -35,8 +32,10 @@ public class MarkdownWriter {
         }
 
         for (PageElement el : result.getSortedElements()) {
-            String root = findRoot(el.getParentUrl(), result.getRootUrls());
+            String root = el.getParentUrl();
             if (root != null) {
+                if(!grouped.containsKey(root))
+                    grouped.put(root, new ArrayList<>());
                 grouped.get(root).add(el);
             }
         }
@@ -70,13 +69,6 @@ public class MarkdownWriter {
         }
 
         return markdownResult;
-    }
-
-    private static String findRoot(String parentUrl, List<String> rootUrls) {
-        return rootUrls.stream()
-                .filter(parentUrl::startsWith)
-                .findFirst()
-                .orElse(null);
     }
 
     private static String getIndentation(int depth) {

@@ -6,12 +6,8 @@ import java.io.IOException;
 
 public class JsoupHttpStatusChecker implements HttpStatusChecker {
     @Override
-    public boolean isBroken(String url) {
-        try {
-            int statusCode = Jsoup.connect(url).ignoreHttpErrors(true).execute().statusCode();
-            return statusCode >= 400;
-        } catch (IOException | IllegalArgumentException e) {
-            return true;
-        }
+    public boolean isBroken(String url) throws IOException, IllegalArgumentException {
+        int statusCode = Jsoup.connect(url).ignoreHttpErrors(true).execute().statusCode();
+        return statusCode >= 400;
     }
 }

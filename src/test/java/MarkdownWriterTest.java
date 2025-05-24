@@ -54,19 +54,6 @@ public class MarkdownWriterTest {
     }
 
     @Test
-    void testToMarkdownLines_skipsElementsWithoutMatchingRoot() {
-        CrawlResult result = new CrawlResult("http://example.com");
-        result.addRootUrl("http://example.com");
-
-        // This parentUrl does NOT match root
-        result.addElement(new Heading(1, 1, "http://other.com", "h1", "Should not appear"));
-
-        List<String> markdown = MarkdownWriter.toMarkdownLines(result);
-
-        assertFalse(markdown.stream().anyMatch(l -> l.contains("Should not appear")));
-    }
-
-    @Test
     void testToMarkdownLines_respectsDepthChanges() {
         CrawlResult result = new CrawlResult("http://example.com");
         result.addRootUrl("http://example.com");
@@ -89,6 +76,20 @@ public class MarkdownWriterTest {
 
         List<String> markdown = MarkdownWriter.toMarkdownLines(result);
         assertTrue(markdown.stream().anyMatch(l -> l.contains("-->Indented Heading") || l.contains("--> Indented Heading")));
+    }
+
+    @Test
+    void testDeepElementsAreIncludedInMarkdownOutput() {
+        CrawlResult result = new CrawlResult("http://site.com");
+        result.addRootUrl("http://site.com");
+
+        result.addElement(new Heading(1, 0, "http://site.com", "h1", "Top Heading"));
+        result.addElement(new Link(2, 1, "http://site.com/about", "http://site.com/about/team"));
+        result.addElement(new BrokenLink(3, 2, "http://site.com/about/team", "http://site.com/broken"));
+
+        List<String> lines = MarkdownWriter.toMarkdownLines(result);
+        assertTrue(lines.stream().anyMatch(line -> line.contains("depth: 3")));
+        assertTrue(lines.stream().anyMatch(line -> line.contains("broken link")));
     }
 
     @Test
