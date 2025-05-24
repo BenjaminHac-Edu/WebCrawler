@@ -1,6 +1,7 @@
 package com.webcrawler.crawler;
 
 import com.webcrawler.html.HtmlDocument;
+import com.webcrawler.html.HtmlElement;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -8,7 +9,7 @@ public class CrawlTask implements Runnable {
     private final String url;
     private final int depth;
     private final CrawlContext context;
-    AtomicInteger orderNumber;
+    private final AtomicInteger orderNumber;
 
     public CrawlTask(String url, int depth, CrawlContext context) {
         this.url = url;
@@ -30,31 +31,52 @@ public class CrawlTask implements Runnable {
             extractLinks(doc, depth);
 
         } catch (Exception e) {
-            context.crawlResult().addElement(new BrokenLink(depth, orderNumber.getAndIncrement(), url, url));
+            //context.crawlResult().addElement(new BrokenLink(depth, orderNumber.getAndIncrement(), url, url));
+            recordError("Unexpected error: " + e.getMessage());
         } finally {
             context.latch().countDown();
         }
     }
 
     private void extractHeadings(HtmlDocument document, int depth) {
-
-        document.selectHeadings().forEach(heading -> {
-            context.crawlResult().addElement(new Heading(depth, orderNumber.getAndIncrement(), url, heading.getTagName(), heading.getText()));
-        });
+        try {
+            document.selectHeadings().forEach(heading -> {
+                context.crawlResult().addElement(new Heading(depth, orderNumber.getAndIncrement(), url, heading.getTagName(), heading.getText()));
+            });
+        } catch (Exception e) {
+            recordError("Error extracting headings: " + e.getMessage());
+        }
     }
 
     private void extractLinks(HtmlDocument document, int depth) {
-        document.selectLinks().forEach(link -> {
-            String href = link.getAbsoluteHref();
-            if (href.isBlank()) return;
+        try{
+            document.selectLinks().forEach(link -> {
+                String href = link.getAbsoluteHref();
+                if (href.isBlank()) return;
 
-            if (context.checker().isBroken(href)) {
-                context.crawlResult().addElement(new BrokenLink(depth, orderNumber.getAndIncrement(), url, href));
-            } else if (isValidDomain(href)) {
-                context.crawlResult().addElement(new Link(depth, orderNumber.getAndIncrement(), url, href));
-                context.scheduler().submitChildTask(href, depth + 1, context.config(), context.latch());
-            }
-        });
+                try{
+                    if (context.checker().isBroken(href)) {
+                        context.crawlResult().addElement(new BrokenLink(depth, orderNumber.getAndIncrement(), url, href));
+                    } else if (isValidDomain(href)) {
+                        context.crawlResult().addElement(new Link(depth, orderNumber.getAndIncrement(), url, href));
+                        context.scheduler().submitChildTask(href, depth + 1, context.config(), context.latch());
+                    }
+                }catch (Exception e) {
+                    recordError("Error checking link: " + href + " - " + e.getMessage());
+                }
+
+            });
+        }catch (Exception e) {
+            recordError("Error extracting links: " + e.getMessage());
+        }
+
+    }
+
+    private void recordError(String message) {
+        String errorMessage = "[ERROR] " + message;
+        context.crawlResult().addElement(new ErrorElement(
+                depth, orderNumber.getAndIncrement(), url, errorMessage
+        ));
     }
 
     private boolean isValidDomain(String url) {
