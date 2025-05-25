@@ -1,6 +1,6 @@
-package crawler;
+package crawler.core;
 
-import com.webcrawler.crawler.CountUpDownLatch;
+import com.webcrawler.crawler.core.CountUpDownLatch;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

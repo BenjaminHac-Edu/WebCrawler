@@ -1,6 +1,8 @@
-package com.webcrawler.crawler;
+package com.webcrawler.crawler.model;
 
-public class Link extends PageElement{
+import com.webcrawler.crawler.core.PageElement;
+
+public class Link extends PageElement {
     private final String url;
 
     public Link(int depth, int order, String parentUrl, String url) {

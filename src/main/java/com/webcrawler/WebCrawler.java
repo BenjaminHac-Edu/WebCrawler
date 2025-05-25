@@ -1,7 +1,10 @@
 package com.webcrawler;
 
 
-import com.webcrawler.crawler.*;
+import com.webcrawler.crawler.checker.JsoupHttpStatusChecker;
+import com.webcrawler.crawler.config.CrawlerConfig;
+import com.webcrawler.crawler.core.ConcurrentCrawler;
+import com.webcrawler.crawler.core.CrawlResult;
 import com.webcrawler.html.JsoupHtmlDocumentFetcher;
 import com.webcrawler.output.MarkdownWriter;
 

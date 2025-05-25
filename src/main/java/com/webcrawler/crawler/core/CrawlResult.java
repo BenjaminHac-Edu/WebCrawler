@@ -1,4 +1,4 @@
-package com.webcrawler.crawler;
+package com.webcrawler.crawler.core;
 
 import java.util.ArrayList;
 import java.util.List;

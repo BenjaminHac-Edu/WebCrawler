@@ -1,4 +1,4 @@
-package com.webcrawler.crawler;
+package com.webcrawler.crawler.core;
 
 public abstract class PageElement implements Comparable<PageElement>{
     private final int depth;

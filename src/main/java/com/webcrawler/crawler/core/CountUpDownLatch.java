@@ -1,4 +1,4 @@
-package com.webcrawler.crawler;
+package com.webcrawler.crawler.core;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;

@@ -1,7 +1,9 @@
-import com.webcrawler.crawler.BrokenLink;
-import com.webcrawler.crawler.Heading;
-import com.webcrawler.crawler.Link;
-import com.webcrawler.crawler.PageElement;
+package crawler.model;
+
+import com.webcrawler.crawler.model.BrokenLink;
+import com.webcrawler.crawler.model.Heading;
+import com.webcrawler.crawler.model.Link;
+import com.webcrawler.crawler.core.PageElement;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

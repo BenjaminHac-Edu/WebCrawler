@@ -1,4 +1,4 @@
-package com.webcrawler.crawler;
+package com.webcrawler.crawler.checker;
 
 import java.io.IOException;
 

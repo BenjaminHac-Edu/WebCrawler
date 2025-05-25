@@ -1,5 +1,7 @@
-package com.webcrawler.crawler;
+package com.webcrawler.crawler.core;
 
+import com.webcrawler.crawler.checker.HttpStatusChecker;
+import com.webcrawler.crawler.config.CrawlerConfig;
 import com.webcrawler.html.HtmlDocumentFetcher;
 
 import java.util.*;

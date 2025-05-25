@@ -1,4 +1,4 @@
-package com.webcrawler.crawler;
+package com.webcrawler.crawler.config;
 
 import java.util.Arrays;
 import java.util.HashSet;

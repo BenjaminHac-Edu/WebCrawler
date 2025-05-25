@@ -1,6 +1,10 @@
-import com.webcrawler.crawler.*;
+package output;
+
+import com.webcrawler.crawler.core.CrawlResult;
+import com.webcrawler.crawler.model.BrokenLink;
+import com.webcrawler.crawler.model.Heading;
+import com.webcrawler.crawler.model.Link;
 import com.webcrawler.output.MarkdownWriter;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;

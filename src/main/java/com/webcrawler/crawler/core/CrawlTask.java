@@ -1,7 +1,10 @@
-package com.webcrawler.crawler;
+package com.webcrawler.crawler.core;
 
+import com.webcrawler.crawler.model.BrokenLink;
+import com.webcrawler.crawler.model.ErrorElement;
+import com.webcrawler.crawler.model.Heading;
+import com.webcrawler.crawler.model.Link;
 import com.webcrawler.html.HtmlDocument;
-import com.webcrawler.html.HtmlElement;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

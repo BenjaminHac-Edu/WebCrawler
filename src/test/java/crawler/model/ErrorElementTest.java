@@ -1,4 +1,6 @@
-import com.webcrawler.crawler.ErrorElement;
+package crawler.model;
+
+import com.webcrawler.crawler.model.ErrorElement;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

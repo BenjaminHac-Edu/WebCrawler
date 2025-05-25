@@ -1,6 +1,12 @@
-package crawler;
+package crawler.core;
 
-import com.webcrawler.crawler.*;
+import com.webcrawler.crawler.checker.HttpStatusChecker;
+import com.webcrawler.crawler.config.CrawlerConfig;
+import com.webcrawler.crawler.core.ConcurrentCrawler;
+import com.webcrawler.crawler.core.CrawlResult;
+import com.webcrawler.crawler.model.BrokenLink;
+import com.webcrawler.crawler.model.Heading;
+import com.webcrawler.crawler.model.Link;
 import com.webcrawler.html.HtmlDocument;
 import com.webcrawler.html.HtmlDocumentFetcher;
 import com.webcrawler.html.HtmlElement;
