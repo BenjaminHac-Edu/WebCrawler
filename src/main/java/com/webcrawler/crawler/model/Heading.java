@@ -1,7 +1,5 @@
 package com.webcrawler.crawler.model;
 
-import com.webcrawler.crawler.core.PageElement;
-
 public class Heading extends PageElement {
     private final int tag;
     private final String content;

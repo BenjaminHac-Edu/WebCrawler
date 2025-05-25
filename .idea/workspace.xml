@@ -4,30 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="54985c3f-2603-40f9-87d4-71bb5cd4dd3f" name="Changes" comment="fix: elements from depth 2 or above were not written into the report&#10;feat: add HttpStatusCheckerErrorHandling into the new errorhandling format">
+    <list default="true" id="54985c3f-2603-40f9-87d4-71bb5cd4dd3f" name="Changes" comment="refactor: change project directory structure; removed unneeded code">
+      <change afterPath="$PROJECT_DIR$/src/test/java/crawler/checker/JsoupHttpStatusCheckerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/crawler/html/JsoupHtmlDocumentFetcherTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/crawler/html/JsoupHtmlDocumentTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/crawler/html/JsoupHtmlElementTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/crawler/model/BrokenLinkTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/crawler/model/HeadingTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/crawler/model/LinkTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/WebCrawler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/WebCrawler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/BrokenLink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/model/BrokenLink.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/ConcurrentCrawler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/core/ConcurrentCrawler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/CountUpDownLatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/core/CountUpDownLatch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/CrawlContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/core/CrawlContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/CrawlResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/core/CrawlResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/CrawlTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/core/CrawlTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/CrawlerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/config/CrawlerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/ErrorElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/model/ErrorElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/Heading.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/model/Heading.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/HttpStatusChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/checker/HttpStatusChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/JsoupHttpStatusChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/checker/JsoupHttpStatusChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/Link.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/model/Link.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/PageElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/core/PageElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/UrlHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/core/CrawlResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/core/CrawlResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/core/PageElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/model/PageElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/model/BrokenLink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/model/BrokenLink.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/model/ErrorElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/model/ErrorElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/model/Heading.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/model/Heading.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/model/Link.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/model/Link.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/output/MarkdownWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/output/MarkdownWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ErrorElementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/crawler/model/ErrorElementTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/MarkdownWriterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/output/MarkdownWriterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/PageElementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/crawler/model/PageElementTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/UrlHelperTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/crawler/ConcurrentCrawlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/crawler/ConcurrentCrawlerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/crawler/CountUpDownLatchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/crawler/CountUpDownLatchTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/crawler/model/ErrorElementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/crawler/model/ErrorElementTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/crawler/model/PageElementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/crawler/model/PageElementTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,63 +65,71 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.WebCrawler aau.at depth:1.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.WebCrawler aau.at depth:2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebCrawler drauphilharmonie.com depth:2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebCrawler example.com depth:2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebCrawler example.com depth:3.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebCrawler example.com,google.com depth:1.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebCrawler example.com,google.com depth:2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebCrawler example.com.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebCrawler google.com 2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebCrawler google.com depth:1.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebCrawler google.com depth:2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebCrawler.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.All in WebCrawler.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ConcurrentCrawlerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ConcurrentCrawlerTest.testConcurrentCrawling_multipleUrls_allProcessed.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CountUpDownLatchTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.CrawlTaskTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CrawlerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CrawlerTest.testCrawlAddsHeadingAndLink.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CrawlerTest.testValidUrl.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ErrorElementTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.MarkdownWriterTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.MarkdownWriterTest.testDeepElementsAreIncludedInMarkdownOutput.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.MarkdownWriterTest.testEmptyCrawlResult.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.MarkdownWriterTest.testIndentationFormatting.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.MarkdownWriterTest.testMultipleElementsDifferentDepths.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.MarkdownWriterTest.testSaveMarkdown.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.MarkdownWriterTest.testSingleHeadingAtDepth1.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.MarkdownWriterTest.testWriteToFile.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PageElementTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UrlHelperTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.java in WebCrawler.executor&quot;: &quot;Coverage&quot;,
-    &quot;Maven.WebCrawler [clean,compile...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.WebCrawler [clean,package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.WebCrawler [clean,test].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feat/assignment2&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Uni/CleanCode/WebCrawler/src/main/java/org/webcrawler/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Java&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.WebCrawler aau.at depth:1.executor": "Debug",
+    "Application.WebCrawler aau.at depth:2.executor": "Run",
+    "Application.WebCrawler drauphilharmonie.com depth:2.executor": "Run",
+    "Application.WebCrawler example.com depth:2.executor": "Run",
+    "Application.WebCrawler example.com depth:3.executor": "Run",
+    "Application.WebCrawler example.com,google.com depth:1.executor": "Run",
+    "Application.WebCrawler example.com,google.com depth:2.executor": "Run",
+    "Application.WebCrawler example.com.executor": "Run",
+    "Application.WebCrawler google.com 2.executor": "Run",
+    "Application.WebCrawler google.com depth:1.executor": "Run",
+    "Application.WebCrawler google.com depth:2.executor": "Run",
+    "Application.WebCrawler.executor": "Run",
+    "JUnit.All in WebCrawler.executor": "Run",
+    "JUnit.BrokenLinkTest.executor": "Run",
+    "JUnit.ConcurrentCrawlerTest.executor": "Run",
+    "JUnit.ConcurrentCrawlerTest.testConcurrentCrawling_multipleUrls_allProcessed.executor": "Run",
+    "JUnit.CountUpDownLatchTest.executor": "Coverage",
+    "JUnit.CrawlTaskTest.executor": "Run",
+    "JUnit.CrawlerTest.executor": "Run",
+    "JUnit.CrawlerTest.testCrawlAddsHeadingAndLink.executor": "Run",
+    "JUnit.CrawlerTest.testValidUrl.executor": "Run",
+    "JUnit.ErrorElementTest.executor": "Run",
+    "JUnit.HeadingTest.TestToMarkdownHandlesEmptyMessage.executor": "Run",
+    "JUnit.HeadingTest.executor": "Run",
+    "JUnit.JsoupHtmlDocumentFetcherTest.executor": "Run",
+    "JUnit.JsoupHtmlDocumentTest.executor": "Run",
+    "JUnit.JsoupHtmlElementTest.executor": "Run",
+    "JUnit.JsoupHttpStatusCheckerTest.executor": "Run",
+    "JUnit.LinkTest.executor": "Run",
+    "JUnit.MarkdownWriterTest.executor": "Run",
+    "JUnit.MarkdownWriterTest.testDeepElementsAreIncludedInMarkdownOutput.executor": "Run",
+    "JUnit.MarkdownWriterTest.testEmptyCrawlResult.executor": "Run",
+    "JUnit.MarkdownWriterTest.testIndentationFormatting.executor": "Run",
+    "JUnit.MarkdownWriterTest.testMultipleElementsDifferentDepths.executor": "Run",
+    "JUnit.MarkdownWriterTest.testSaveMarkdown.executor": "Run",
+    "JUnit.MarkdownWriterTest.testSingleHeadingAtDepth1.executor": "Run",
+    "JUnit.MarkdownWriterTest.testWriteToFile.executor": "Run",
+    "JUnit.PageElementTest.executor": "Run",
+    "JUnit.UrlHelperTest.executor": "Run",
+    "JUnit.java in WebCrawler.executor": "Coverage",
+    "Maven.WebCrawler [clean,compile...].executor": "Run",
+    "Maven.WebCrawler [clean,package].executor": "Run",
+    "Maven.WebCrawler [clean,test].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "feat/assignment2",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Uni/CleanCode/WebCrawler/src/main/java/org/webcrawler/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Java",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn clean test" />
@@ -180,45 +182,62 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CrawlTaskTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JsoupHtmlDocumentFetcherTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WebCrawler" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="crawler.*" />
+          <option name="PATTERN" value="crawler.html.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="crawler" />
-      <option name="MAIN_CLASS_NAME" value="crawler.CrawlTaskTest" />
+      <option name="PACKAGE_NAME" value="crawler.html" />
+      <option name="MAIN_CLASS_NAME" value="crawler.html.JsoupHtmlDocumentFetcherTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ErrorElementTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JsoupHtmlDocumentTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WebCrawler" />
-      <option name="PACKAGE_NAME" value="crawler.model" />
-      <option name="MAIN_CLASS_NAME" value="crawler.model.ErrorElementTest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="crawler.html.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="crawler.html" />
+      <option name="MAIN_CLASS_NAME" value="crawler.html.JsoupHtmlDocumentTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MarkdownWriterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JsoupHtmlElementTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WebCrawler" />
-      <option name="PACKAGE_NAME" value="output" />
-      <option name="MAIN_CLASS_NAME" value="output.MarkdownWriterTest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="crawler.html.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="crawler.html" />
+      <option name="MAIN_CLASS_NAME" value="crawler.html.JsoupHtmlElementTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MarkdownWriterTest.testDeepElementsAreIncludedInMarkdownOutput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JsoupHttpStatusCheckerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WebCrawler" />
-      <option name="PACKAGE_NAME" value="output" />
-      <option name="MAIN_CLASS_NAME" value="output.MarkdownWriterTest" />
-      <option name="METHOD_NAME" value="testDeepElementsAreIncludedInMarkdownOutput" />
-      <option name="TEST_OBJECT" value="method" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="crawler.checker.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="crawler.checker" />
+      <option name="MAIN_CLASS_NAME" value="crawler.checker.JsoupHttpStatusCheckerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -236,19 +255,19 @@
       <item itemvalue="Application.WebCrawler google.com depth:1" />
       <item itemvalue="Application.WebCrawler example.com,google.com depth:2" />
       <item itemvalue="Application.WebCrawler aau.at depth:1" />
-      <item itemvalue="JUnit.CrawlTaskTest" />
-      <item itemvalue="JUnit.ErrorElementTest" />
-      <item itemvalue="JUnit.MarkdownWriterTest.testDeepElementsAreIncludedInMarkdownOutput" />
-      <item itemvalue="JUnit.MarkdownWriterTest" />
+      <item itemvalue="JUnit.JsoupHtmlDocumentFetcherTest" />
+      <item itemvalue="JUnit.JsoupHtmlDocumentTest" />
+      <item itemvalue="JUnit.JsoupHtmlElementTest" />
+      <item itemvalue="JUnit.JsoupHttpStatusCheckerTest" />
       <item itemvalue="JUnit.java in WebCrawler" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.java in WebCrawler" />
-        <item itemvalue="JUnit.MarkdownWriterTest" />
-        <item itemvalue="JUnit.MarkdownWriterTest.testDeepElementsAreIncludedInMarkdownOutput" />
-        <item itemvalue="JUnit.ErrorElementTest" />
-        <item itemvalue="JUnit.CrawlTaskTest" />
+        <item itemvalue="JUnit.JsoupHttpStatusCheckerTest" />
+        <item itemvalue="JUnit.JsoupHtmlDocumentFetcherTest" />
+        <item itemvalue="JUnit.JsoupHtmlElementTest" />
+        <item itemvalue="JUnit.JsoupHtmlDocumentTest" />
       </list>
     </recent_temporary>
   </component>
@@ -293,6 +312,7 @@
       <workItem from="1747934093465" duration="799000" />
       <workItem from="1748008098443" duration="133000" />
       <workItem from="1748069120809" duration="3756000" />
+      <workItem from="1748159262857" duration="2107000" />
     </task>
     <task id="LOCAL-00001" summary="initial setup">
       <created>1743330681308</created>
@@ -453,7 +473,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748072545127</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="refactor: change project directory structure; removed unneeded code">
+      <option name="closed" value="true" />
+      <created>1748159397599</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1748159397599</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -501,13 +529,14 @@
     <MESSAGE value="feat: reformated the output file;&#10;feat: sorted the found elements depending on the location of the crawled website" />
     <MESSAGE value="feat: add better Error Handling, save errors into the report" />
     <MESSAGE value="fix: elements from depth 2 or above were not written into the report&#10;feat: add HttpStatusCheckerErrorHandling into the new errorhandling format" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: elements from depth 2 or above were not written into the report&#10;feat: add HttpStatusCheckerErrorHandling into the new errorhandling format" />
+    <MESSAGE value="refactor: change project directory structure; removed unneeded code" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: change project directory structure; removed unneeded code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/crawler/ConcurrentCrawlerTest.java</url>
+          <url>file://$PROJECT_DIR$/src/test/java/crawler/core/ConcurrentCrawlerTest.java</url>
           <line>85</line>
           <properties>
             <option name="lambda-ordinal" value="-1" />
@@ -515,7 +544,7 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/crawler/ConcurrentCrawlerTest.java</url>
+          <url>file://$PROJECT_DIR$/src/test/java/crawler/core/ConcurrentCrawlerTest.java</url>
           <line>81</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
@@ -535,7 +564,7 @@
     <SUITE FILE_PATH="coverage/WebCrawler$CountUpDownLatchTest.ic" NAME="CountUpDownLatchTest Coverage Results" MODIFIED="1747558129723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>crawler.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/WebCrawler$java_in_WebCrawler.ic" NAME="java in WebCrawler Coverage Results" MODIFIED="1748072796816" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/WebCrawler$java_in_WebCrawler.ic" NAME="java in WebCrawler Coverage Results" MODIFIED="1748160887045" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/WebCrawler$All_in_WebCrawler.ic" NAME="All in WebCrawler Coverage Results" MODIFIED="1745590389180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>

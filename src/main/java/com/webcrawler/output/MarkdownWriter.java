@@ -2,7 +2,7 @@ package com.webcrawler.output;
 
 import com.webcrawler.crawler.core.CrawlResult;
 import com.webcrawler.crawler.model.Heading;
-import com.webcrawler.crawler.core.PageElement;
+import com.webcrawler.crawler.model.PageElement;
 
 import java.io.FileWriter;
 import java.io.IOException;

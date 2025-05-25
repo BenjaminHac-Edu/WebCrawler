@@ -1,7 +1,5 @@
 package com.webcrawler.crawler.model;
 
-import com.webcrawler.crawler.core.PageElement;
-
 public class ErrorElement extends PageElement {
     private final String message;
 

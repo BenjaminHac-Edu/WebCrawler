@@ -1,5 +1,7 @@
 package com.webcrawler.crawler.core;
 
+import com.webcrawler.crawler.model.PageElement;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

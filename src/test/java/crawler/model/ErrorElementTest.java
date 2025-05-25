@@ -1,6 +1,8 @@
 package crawler.model;
 
 import com.webcrawler.crawler.model.ErrorElement;
+import com.webcrawler.crawler.model.Link;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,42 +10,39 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ErrorElementTest {
 
-    @Test
-    void testToMarkdownOutput() {
-        ErrorElement error = new ErrorElement(2, 1, "http://example.com", "Failed to parse");
-        String markdown = error.toMarkdown("-->");
-        assertEquals("<br>-->  Error: Failed to parse", markdown);
+    private ErrorElement errorElement;
+
+    @BeforeEach
+    void setUp() {
+        errorElement = new ErrorElement(1, 2, "http://test.com", "Error A");
     }
 
     @Test
     void testGetters() {
-        ErrorElement error = new ErrorElement(3, 5, "http://page.com", "Something broke");
-        assertEquals(3, error.getDepth());
-        assertEquals(5, error.getOrder());
-        assertEquals("http://page.com", error.getParentUrl());
-        assertEquals("Something broke", error.getMessage());
+        assertEquals(1, errorElement.getDepth());
+        assertEquals(2, errorElement.getOrder());
+        assertEquals("http://test.com", errorElement.getParentUrl());
+        assertEquals("Error A", errorElement.getMessage());
     }
 
     @Test
     void testOrderingWithCompareTo() {
-        ErrorElement e1 = new ErrorElement(1, 2, "url", "Error A");
-        ErrorElement e2 = new ErrorElement(1, 5, "url", "Error B");
+        ErrorElement errorElement2 = new ErrorElement(1, 5, "url", "Error B");
 
-        assertTrue(e1.compareTo(e2) < 0);
-        assertTrue(e2.compareTo(e1) > 0);
-        assertEquals(0, e1.compareTo(new ErrorElement(1, 2, "url", "Error A")));
+        assertTrue(errorElement.compareTo(errorElement2) < 0);
+        assertTrue(errorElement2.compareTo(errorElement) > 0);
+        assertEquals(0, errorElement.compareTo(new ErrorElement(1, 2, "http://test.com", "Error A")));
     }
 
     @Test
-    void testMarkdownIndentationVariation() {
-        ErrorElement error = new ErrorElement(4, 0, "http://x.com", "Nested error");
-        String indent = "--->>";
-        assertEquals("<br>--->>  Error: Nested error", error.toMarkdown(indent));
+    void testToMarkdownOutput() {
+        String markdown = errorElement.toMarkdown("-->");
+        assertEquals("<br>-->  Error: Error A", markdown);
     }
 
     @Test
     void testToMarkdownHandlesEmptyMessage() {
-        ErrorElement error = new ErrorElement(1, 0, "http://x.com", "");
-        assertEquals("<br>  Error: ", error.toMarkdown(""));
+        errorElement = new ErrorElement(1, 0, "http://x.com", "");
+        assertEquals("<br>  Error: ", errorElement.toMarkdown(""));
     }
 }
