@@ -25,7 +25,20 @@ public class MarkdownWriter {
         markdownResult.add("input: <a>" + result.getStartUrl() + "</a>");
         markdownResult.add("");
 
-        // Group elements by root start URL
+        Map<String, List<PageElement>> grouped = groupElementsByUrl(result);
+
+        // Output grouped results
+        for (Map.Entry<String, List<PageElement>> entry : grouped.entrySet()) {
+            markdownResult.add("### Results for: <a>" + entry.getKey() + "</a>");
+
+            pageElementsToMarkdown(markdownResult, entry.getValue());
+
+            markdownResult.add(""); // spacing between root results
+        }
+        return markdownResult;
+    }
+
+    private static Map<String, List<PageElement>> groupElementsByUrl(CrawlResult result) {
         Map<String, List<PageElement>> grouped = new LinkedHashMap<>();
         for (String root : result.getRootUrls()) {
             grouped.put(root, new ArrayList<>());
@@ -33,42 +46,36 @@ public class MarkdownWriter {
 
         for (PageElement el : result.getSortedElements()) {
             String root = el.getParentUrl();
-            if (root != null) {
-                if(!grouped.containsKey(root))
-                    grouped.put(root, new ArrayList<>());
-                grouped.get(root).add(el);
-            }
+            if (root == null) continue;
+
+            if (!grouped.containsKey(root))
+                grouped.put(root, new ArrayList<>());
+            grouped.get(root).add(el);
         }
+        return grouped;
+    }
 
-        // Output grouped results
-        for (Map.Entry<String, List<PageElement>> entry : grouped.entrySet()) {
-            markdownResult.add("### Results for: <a>" + entry.getKey() + "</a>");
+    private static void pageElementsToMarkdown(List<String> markdownResult, List<PageElement> pageElements) {
+        int lastDepth = -1;
+        boolean wasLastElementAHeading = false;
 
-            int lastDepth = -1;
-            boolean wasLastElementAHeading = false;
+        for (PageElement pageElement : pageElements) {
+            int depth = pageElement.getDepth();
 
-            for (PageElement pageElement : entry.getValue()) {
-                int depth = pageElement.getDepth();
-
-                if (depth != lastDepth) {
-                    markdownResult.add("<br>depth: " + depth);
-                    lastDepth = depth;
-                }
-
-                if (!wasLastElementAHeading && pageElement instanceof Heading)
-                    wasLastElementAHeading = true;
-                else if (wasLastElementAHeading && !(pageElement instanceof Heading)) {
-                    markdownResult.add(""); // separate sections
-                    wasLastElementAHeading = false;
-                }
-
-                markdownResult.add(pageElement.toMarkdown(getIndentation(depth)));
+            if (depth != lastDepth) {
+                markdownResult.add("<br>depth: " + depth);
+                lastDepth = depth;
             }
 
-            markdownResult.add(""); // spacing between root results
-        }
+            if (!wasLastElementAHeading && pageElement instanceof Heading)
+                wasLastElementAHeading = true;
+            else if (wasLastElementAHeading && !(pageElement instanceof Heading)) {
+                markdownResult.add(""); // separate sections
+                wasLastElementAHeading = false;
+            }
 
-        return markdownResult;
+            markdownResult.add(pageElement.toMarkdown(getIndentation(depth)));
+        }
     }
 
     private static String getIndentation(int depth) {

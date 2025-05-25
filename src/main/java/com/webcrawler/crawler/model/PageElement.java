@@ -1,6 +1,6 @@
 package com.webcrawler.crawler.model;
 
-public abstract class PageElement implements Comparable<PageElement>{
+public abstract class PageElement implements Comparable<PageElement> {
     private final int depth;
     private final int order;
     private final String parentUrl;

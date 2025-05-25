@@ -34,7 +34,6 @@ public class CrawlTask implements Runnable {
             extractLinks(doc, depth);
 
         } catch (Exception e) {
-            //context.crawlResult().addElement(new BrokenLink(depth, orderNumber.getAndIncrement(), url, url));
             recordError("Unexpected error: " + e.getMessage());
         } finally {
             context.latch().countDown();
@@ -44,7 +43,9 @@ public class CrawlTask implements Runnable {
     private void extractHeadings(HtmlDocument document, int depth) {
         try {
             document.selectHeadings().forEach(heading -> {
-                context.crawlResult().addElement(new Heading(depth, orderNumber.getAndIncrement(), url, heading.getTagName(), heading.getText()));
+                context.crawlResult().addElement(
+                        new Heading(depth, orderNumber.getAndIncrement(), url, heading.getTagName(), heading.getText())
+                );
             });
         } catch (Exception e) {
             recordError("Error extracting headings: " + e.getMessage());
@@ -52,27 +53,32 @@ public class CrawlTask implements Runnable {
     }
 
     private void extractLinks(HtmlDocument document, int depth) {
-        try{
+        try {
             document.selectLinks().forEach(link -> {
                 String href = link.getAbsoluteHref();
                 if (href.isBlank()) return;
 
-                try{
-                    if (context.checker().isBroken(href)) {
-                        context.crawlResult().addElement(new BrokenLink(depth, orderNumber.getAndIncrement(), url, href));
-                    } else if (isValidDomain(href)) {
-                        context.crawlResult().addElement(new Link(depth, orderNumber.getAndIncrement(), url, href));
-                        context.scheduler().submitChildTask(href, depth + 1, context.config(), context.latch());
-                    }
-                }catch (Exception e) {
-                    recordError("Error checking link: " + href + " - " + e.getMessage());
-                }
-
+                checkLinks(href);
             });
-        }catch (Exception e) {
+        } catch (Exception e) {
             recordError("Error extracting links: " + e.getMessage());
         }
+    }
 
+    private void checkLinks(String href) {
+        try {
+            if (context.checker().isBroken(href)) {
+                context.crawlResult().addElement(new BrokenLink(depth, orderNumber.getAndIncrement(), url, href));
+                return;
+            }
+            if (!isValidDomain(href))
+                return;
+
+            context.crawlResult().addElement(new Link(depth, orderNumber.getAndIncrement(), url, href));
+            context.scheduler().submitChildTask(href, depth + 1, context.config());
+        } catch (Exception e) {
+            recordError("Error checking link: " + href + " - " + e.getMessage());
+        }
     }
 
     private void recordError(String message) {
