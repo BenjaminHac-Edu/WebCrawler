@@ -24,9 +24,8 @@ public class CrawlTask implements Runnable {
     @Override
     public void run() {
         try {
-            if (depth > context.config().getMaxDepth() || context.visitedUrls().contains(url)) return;
-
-            context.visitedUrls().add(url);
+            if (depth > context.config().getMaxDepth()) return;
+            if (!context.visitedUrls().add(url)) return; // atomic check-and-add
 
             HtmlDocument doc = context.fetcher().fetch(url);
 
