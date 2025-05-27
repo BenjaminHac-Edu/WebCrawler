@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="54985c3f-2603-40f9-87d4-71bb5cd4dd3f" name="Changes" comment="refactor: extract functions, reformat code">
-      <change afterPath="$PROJECT_DIR$/src/test/java/crawler/core/CrawlTaskTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="54985c3f-2603-40f9-87d4-71bb5cd4dd3f" name="Changes" comment="test: add separate test cases for class Crawl Task">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/core/CrawlTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/core/CrawlTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/model/PageElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webcrawler/crawler/model/PageElement.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -125,7 +124,7 @@
       <command value="mvn clean package" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ConcurrentCrawlerTest">
+  <component name="RunManager" selected="JUnit.java in WebCrawler">
     <configuration name="WebCrawler aau.at depth:1" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.webcrawler.WebCrawler" />
       <module name="WebCrawler" />
@@ -245,11 +244,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.java in WebCrawler" />
         <item itemvalue="JUnit.ConcurrentCrawlerTest" />
         <item itemvalue="JUnit.CrawlTaskTest" />
         <item itemvalue="JUnit.ConcurrentCrawlerTest.testConcurrentCrawling_multipleUrls_allProcessed" />
         <item itemvalue="JUnit.output in WebCrawler" />
-        <item itemvalue="JUnit.java in WebCrawler" />
       </list>
     </recent_temporary>
   </component>
@@ -297,7 +296,7 @@
       <workItem from="1748159262857" duration="4986000" />
       <workItem from="1748246182542" duration="97000" />
       <workItem from="1748335292847" duration="801000" />
-      <workItem from="1748364718752" duration="612000" />
+      <workItem from="1748364718752" duration="935000" />
     </task>
     <task id="LOCAL-00001" summary="initial setup">
       <created>1743330681308</created>
@@ -482,7 +481,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748164789371</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="test: add separate test cases for class Crawl Task">
+      <option name="closed" value="true" />
+      <created>1748365603943</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1748365603943</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -533,24 +540,12 @@
     <MESSAGE value="refactor: change project directory structure; removed unneeded code" />
     <MESSAGE value="test: add testcases and refactor them" />
     <MESSAGE value="refactor: extract functions, reformat code" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: extract functions, reformat code" />
+    <MESSAGE value="test: add separate test cases for class Crawl Task" />
+    <option name="LAST_COMMIT_MESSAGE" value="test: add separate test cases for class Crawl Task" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/crawler/core/ConcurrentCrawlerTest.java</url>
-          <line>85</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/crawler/core/ConcurrentCrawlerTest.java</url>
-          <line>81</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/webcrawler/WebCrawler.java</url>
           <line>33</line>

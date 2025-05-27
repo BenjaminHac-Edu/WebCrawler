@@ -29,8 +29,8 @@ public class CrawlTask implements Runnable {
 
             HtmlDocument doc = context.fetcher().fetch(url);
 
-            extractHeadings(doc, depth);
-            extractLinks(doc, depth);
+            extractHeadings(doc);
+            extractLinks(doc);
 
         } catch (Exception e) {
             recordError("Unexpected error: " + e.getMessage());
@@ -39,19 +39,17 @@ public class CrawlTask implements Runnable {
         }
     }
 
-    private void extractHeadings(HtmlDocument document, int depth) {
+    private void extractHeadings(HtmlDocument document) {
         try {
-            document.selectHeadings().forEach(heading -> {
-                context.crawlResult().addElement(
-                        new Heading(depth, orderNumber.getAndIncrement(), url, heading.getTagName(), heading.getText())
-                );
-            });
+            document.selectHeadings().forEach(heading -> context.crawlResult().addElement(
+                    new Heading(depth, orderNumber.getAndIncrement(), url, heading.getTagName(), heading.getText())
+            ));
         } catch (Exception e) {
             recordError("Error extracting headings: " + e.getMessage());
         }
     }
 
-    private void extractLinks(HtmlDocument document, int depth) {
+    private void extractLinks(HtmlDocument document) {
         try {
             document.selectLinks().forEach(link -> {
                 String href = link.getAbsoluteHref();
