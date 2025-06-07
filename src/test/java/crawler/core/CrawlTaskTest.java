@@ -3,8 +3,7 @@ package crawler.core;
 import com.webcrawler.crawler.checker.HttpStatusChecker;
 import com.webcrawler.crawler.config.CrawlerConfig;
 import com.webcrawler.crawler.core.*;
-import com.webcrawler.crawler.model.BrokenLink;
-import com.webcrawler.crawler.model.ErrorElement;
+import com.webcrawler.crawler.model.*;
 import com.webcrawler.html.HtmlDocument;
 import com.webcrawler.html.HtmlDocumentFetcher;
 import com.webcrawler.html.HtmlElement;
@@ -13,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -22,114 +22,127 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 public class CrawlTaskTest {
+    private CrawlServices services;
     private HtmlDocumentFetcher fetcher;
     private HttpStatusChecker checker;
     private HtmlDocument document;
-    private HtmlElement headingElement;
-    private HtmlElement linkElement;
-    private CrawlResult crawlResult;
+    private CrawlResult result;
+    private TaskScheduler scheduler;
     private Set<String> visitedUrls;
-    private CountUpDownLatch latch;
-    private ConcurrentCrawler scheduler;
     private CrawlerConfig config;
+
+    private final String url = "http://example.com";
 
     @BeforeEach
     void setup() {
+        services = mock(CrawlServices.class);
         fetcher = mock(HtmlDocumentFetcher.class);
         checker = mock(HttpStatusChecker.class);
         document = mock(HtmlDocument.class);
-        headingElement = mock(HtmlElement.class);
-        linkElement = mock(HtmlElement.class);
-        crawlResult = new CrawlResult("https://test.com");
-        visitedUrls = new CopyOnWriteArraySet<>();
-        latch = mock(CountUpDownLatch.class);
-        scheduler = mock(ConcurrentCrawler.class);
-        config = mock(CrawlerConfig.class);
+        result = new CrawlResult(url);
+        scheduler = mock(TaskScheduler.class);
+        visitedUrls = Collections.synchronizedSet(new HashSet<>());
 
-        when(config.getMaxDepth()).thenReturn(2);
-        when(config.getAllowedDomains()).thenReturn(Set.of("test.com"));
+        config = new CrawlerConfig(url, 3, new String[]{"example.com"});
+
+        when(services.getFetcher()).thenReturn(fetcher);
+        when(services.getChecker()).thenReturn(checker);
+        when(services.getVisitedUrls()).thenReturn(visitedUrls);
+        when(services.getCrawlResult()).thenReturn(result);
+        when(services.getScheduler()).thenReturn(scheduler);
     }
 
     @Test
-    void testRun_addsHeadingsAndLinks() throws Exception {
-        when(fetcher.fetch("https://test.com")).thenReturn(document);
+    void testDepthExceeded() {
+        CrawlTask task = new CrawlTask(url, 4, config, services);
+        task.run();
+        verify(services).countDown();
+        assertTrue(result.getSortedElements().isEmpty());
+    }
 
-        when(document.selectHeadings()).thenReturn(List.of(headingElement));
-        when(headingElement.getTagName()).thenReturn("h1");
-        when(headingElement.getText()).thenReturn("Title");
+    @Test
+    void testAlreadyVisitedUrl() throws IOException {
+        visitedUrls.add(url);
+        CrawlTask task = new CrawlTask(url, 1, config, services);
+        task.run();
+        verify(services).countDown();
+        verify(fetcher, never()).fetch(anyString());
+    }
 
-        when(document.selectLinks()).thenReturn(List.of(linkElement));
-        when(linkElement.getAbsoluteHref()).thenReturn("https://test.com/page");
+    @Test
+    void testSuccessfulCrawlWithHeadingsAndLinks() throws Exception {
+        HtmlElement heading = mock(HtmlElement.class);
+        when(heading.getTagName()).thenReturn("h1");
+        when(heading.getText()).thenReturn("Title");
+
+        HtmlElement link = mock(HtmlElement.class);
+        when(link.getAbsoluteHref()).thenReturn("http://example.com/page");
+
+        when(fetcher.fetch(url)).thenReturn(document);
+        when(document.selectHeadings()).thenReturn(List.of(heading));
+        when(document.selectLinks()).thenReturn(List.of(link));
         when(checker.isBroken(anyString())).thenReturn(false);
 
-        CrawlContext context = new CrawlContext(config, fetcher, checker, visitedUrls, crawlResult, scheduler, latch);
-        new CrawlTask("https://test.com", 1, context).run();
+        CrawlTask task = new CrawlTask(url, 1, config, services);
+        task.run();
 
-        assertEquals(2, crawlResult.getSortedElements().size());
-        verify(scheduler).submitChildTask(eq("https://test.com/page"), eq(2), any());
-        verify(latch).countDown();
+        List<PageElement> elements = result.getSortedElements();
+        assertEquals(2, elements.size()); // 1 heading + 1 link
+
+        assertTrue(elements.stream().anyMatch(e -> e instanceof Heading));
+        assertTrue(elements.stream().anyMatch(e -> e instanceof Link));
+
+        verify(scheduler).submitTask("http://example.com/page", 2, config);
+        verify(services).countDown();
     }
 
     @Test
-    void testRun_doesNotExceedMaxDepth() throws Exception {
-        CrawlContext context = new CrawlContext(config, fetcher, checker, visitedUrls, crawlResult, scheduler, latch);
-        new CrawlTask("https://test.com", 3, context).run();
+    void testBrokenLinkDetected() throws Exception {
+        HtmlElement link = mock(HtmlElement.class);
+        when(link.getAbsoluteHref()).thenReturn("http://example.com/broken");
 
-        assertTrue(crawlResult.getSortedElements().isEmpty());
-        verify(fetcher, never()).fetch(any());
-        verify(latch).countDown();
+        when(fetcher.fetch(url)).thenReturn(document);
+        when(document.selectHeadings()).thenReturn(List.of());
+        when(document.selectLinks()).thenReturn(List.of(link));
+        when(checker.isBroken("http://example.com/broken")).thenReturn(true);
+
+        CrawlTask task = new CrawlTask(url, 1, config, services);
+        task.run();
+
+        List<PageElement> elements = result.getSortedElements();
+        assertEquals(1, elements.size());
+        assertTrue(elements.get(0) instanceof BrokenLink);
+        verify(scheduler, never()).submitTask(any(), anyInt(), any());
     }
 
     @Test
-    void testRun_doesNotRevisitUrls() throws Exception {
-        visitedUrls.add("https://test.com");
-        CrawlContext context = new CrawlContext(config, fetcher, checker, visitedUrls, crawlResult, scheduler, latch);
+    void testInvalidDomainLinkIgnored() throws Exception {
+        HtmlElement link = mock(HtmlElement.class);
+        when(link.getAbsoluteHref()).thenReturn("http://otherdomain.com/page");
 
-        new CrawlTask("https://test.com", 1, context).run();
+        when(fetcher.fetch(url)).thenReturn(document);
+        when(document.selectHeadings()).thenReturn(List.of());
+        when(document.selectLinks()).thenReturn(List.of(link));
+        when(checker.isBroken(any())).thenReturn(false);
 
-        verify(fetcher, never()).fetch(any());
-        verify(latch).countDown();
+        CrawlTask task = new CrawlTask(url, 1, config, services);
+        task.run();
+
+        assertTrue(result.getSortedElements().isEmpty());
+        verify(scheduler, never()).submitTask(any(), anyInt(), any());
     }
 
     @Test
-    void testRun_handlesBrokenLink() throws Exception {
-        when(fetcher.fetch("https://test.com")).thenReturn(document);
-        when(document.selectHeadings()).thenReturn(Collections.emptyList());
-        when(document.selectLinks()).thenReturn(List.of(linkElement));
-        when(linkElement.getAbsoluteHref()).thenReturn("https://test.com/broken");
-        when(checker.isBroken("https://test.com/broken")).thenReturn(true);
+    void testFetcherThrowsException() throws Exception {
+        when(fetcher.fetch(url)).thenThrow(new RuntimeException("Fetch error"));
 
-        CrawlContext context = new CrawlContext(config, fetcher, checker, visitedUrls, crawlResult, scheduler, latch);
-        new CrawlTask("https://test.com", 1, context).run();
+        CrawlTask task = new CrawlTask(url, 1, config, services);
+        task.run();
 
-        assertTrue(crawlResult.getSortedElements().stream().anyMatch(e -> e instanceof BrokenLink));
-        verify(latch).countDown();
+        List<PageElement> elements = result.getSortedElements();
+        assertEquals(1, elements.size());
+        assertTrue(elements.get(0) instanceof ErrorElement);
+        assertTrue(((ErrorElement) elements.get(0)).getMessage().contains("Fetch error"));
     }
 
-    @Test
-    void testRun_handlesFetcherExceptionGracefully() throws Exception {
-        when(fetcher.fetch(anyString())).thenThrow(new IOException("Fetch failed"));
-
-        CrawlContext context = new CrawlContext(config, fetcher, checker, visitedUrls, crawlResult, scheduler, latch);
-        new CrawlTask("https://test.com", 1, context).run();
-
-        assertTrue(crawlResult.getSortedElements().stream().anyMatch(e -> e instanceof ErrorElement));
-        verify(latch).countDown();
-    }
-
-    @Test
-    void testRun_skipsLinkOutsideAllowedDomain() throws Exception {
-        when(fetcher.fetch("https://test.com")).thenReturn(document);
-        when(document.selectLinks()).thenReturn(List.of(linkElement));
-        when(linkElement.getAbsoluteHref()).thenReturn("https://otherdomain.com");
-        when(document.selectHeadings()).thenReturn(Collections.emptyList());
-        when(checker.isBroken(anyString())).thenReturn(false);
-
-        CrawlContext context = new CrawlContext(config, fetcher, checker, visitedUrls, crawlResult, scheduler, latch);
-        new CrawlTask("https://test.com", 1, context).run();
-
-        assertTrue(crawlResult.getSortedElements().isEmpty());
-        verify(scheduler, never()).submitChildTask(any(), anyInt(), any());
-        verify(latch).countDown();
-    }
 }

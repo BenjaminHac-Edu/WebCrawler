@@ -7,7 +7,7 @@ import com.webcrawler.html.HtmlDocumentFetcher;
 import java.util.*;
 import java.util.concurrent.*;
 
-public class ConcurrentCrawler {
+public class ConcurrentCrawler implements TaskScheduler, CrawlServices {
 
     private final HtmlDocumentFetcher fetcher;
     private final HttpStatusChecker checker;
@@ -52,15 +52,20 @@ public class ConcurrentCrawler {
         crawlResult = new CrawlResult(urlInput.toString());
     }
 
-    private void submitTask(String url, int depth, CrawlerConfig config) {
+    // ---- CrawlServices methods ----
+
+    @Override public HtmlDocumentFetcher getFetcher() { return fetcher; }
+    @Override public HttpStatusChecker getChecker() { return checker; }
+    @Override public CrawlResult getCrawlResult() { return crawlResult; }
+    @Override public Set<String> getVisitedUrls() { return visitedUrls; }
+    @Override public TaskScheduler getScheduler() { return this; }
+    @Override public void countDown() { countLatch.countDown(); }
+
+    @Override
+    public void submitTask(String url, int depth, CrawlerConfig config) {
         countLatch.countUp();
 
         System.out.println("Submitting task " + url);
-        CrawlContext context = new CrawlContext(config, fetcher, checker, visitedUrls, crawlResult, this, countLatch);
-        executor.submit(new CrawlTask(url, depth, context));
-    }
-
-    public void submitChildTask(String url, int depth, CrawlerConfig config) {
-        submitTask(url, depth, config);
+        executor.submit(new CrawlTask(url, depth, config, this));
     }
 }

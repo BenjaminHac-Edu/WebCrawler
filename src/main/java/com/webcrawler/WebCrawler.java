@@ -34,16 +34,6 @@ public class WebCrawler {
         List<String> markdownText = MarkdownWriter.toMarkdownLines(result);
         MarkdownWriter.saveToMarkdown("report.md", markdownText);
 
-
-        /*HtmlDocumentFetcher fetcher = new JsoupHtmlDocumentFetcher();
-        HttpStatusChecker statusChecker = new JsoupHttpStatusChecker();
-        Crawler crawler = new Crawler(config, fetcher, statusChecker);
-        CrawlResult crawlResult = crawler.startCrawling();
-
-        List<String> markdownText = MarkdownWriter.toMarkdownLines(crawlResult);
-        MarkdownWriter.saveToMarkdown("report.md", markdownText);*/
-
-
         System.out.println("Crawling completed. See report.md");
     }
 }

@@ -1,5 +1,6 @@
 package com.webcrawler.crawler.core;
 
+import com.webcrawler.crawler.config.CrawlerConfig;
 import com.webcrawler.crawler.model.BrokenLink;
 import com.webcrawler.crawler.model.ErrorElement;
 import com.webcrawler.crawler.model.Heading;
@@ -11,23 +12,26 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class CrawlTask implements Runnable {
     private final String url;
     private final int depth;
-    private final CrawlContext context;
+    private final CrawlerConfig config;
+    private final CrawlServices services;
     private final AtomicInteger orderNumber;
 
-    public CrawlTask(String url, int depth, CrawlContext context) {
+    public CrawlTask(String url, int depth, CrawlerConfig config,
+                     CrawlServices services) {
         this.url = url;
         this.depth = depth;
-        this.context = context;
-        orderNumber = new AtomicInteger(0);
+        this.config = config;
+        this.services = services;
+        this.orderNumber = new AtomicInteger(0);
     }
 
     @Override
     public void run() {
         try {
-            if (depth > context.config().getMaxDepth()) return;
-            if (!context.visitedUrls().add(url)) return; // atomic check-and-add
+            if (depth > config.getMaxDepth()) return;
+            if (!services.getVisitedUrls().add(url)) return; // atomic check-and-add
 
-            HtmlDocument doc = context.fetcher().fetch(url);
+            HtmlDocument doc = services.getFetcher().fetch(url);
 
             extractHeadings(doc);
             extractLinks(doc);
@@ -35,13 +39,13 @@ public class CrawlTask implements Runnable {
         } catch (Exception e) {
             recordError("Unexpected error: " + e.getMessage());
         } finally {
-            context.latch().countDown();
+            services.countDown();
         }
     }
 
     private void extractHeadings(HtmlDocument document) {
         try {
-            document.selectHeadings().forEach(heading -> context.crawlResult().addElement(
+            document.selectHeadings().forEach(heading -> services.getCrawlResult().addElement(
                     new Heading(depth, orderNumber.getAndIncrement(), url, heading.getTagName(), heading.getText())
             ));
         } catch (Exception e) {
@@ -64,28 +68,27 @@ public class CrawlTask implements Runnable {
 
     private void checkLinks(String href) {
         try {
-            if (context.checker().isBroken(href)) {
-                context.crawlResult().addElement(new BrokenLink(depth, orderNumber.getAndIncrement(), url, href));
+            if (services.getChecker().isBroken(href)) {
+                services.getCrawlResult().addElement(new BrokenLink(depth, orderNumber.getAndIncrement(), url, href));
                 return;
             }
             if (!isValidDomain(href))
                 return;
 
-            context.crawlResult().addElement(new Link(depth, orderNumber.getAndIncrement(), url, href));
-            context.scheduler().submitChildTask(href, depth + 1, context.config());
+            services.getCrawlResult().addElement(new Link(depth, orderNumber.getAndIncrement(), url, href));
+            services.getScheduler().submitTask(href, depth + 1, config);
         } catch (Exception e) {
             recordError("Error checking link: " + href + " - " + e.getMessage());
         }
     }
 
     private void recordError(String message) {
-        String errorMessage = "[ERROR] " + message;
-        context.crawlResult().addElement(new ErrorElement(
-                depth, orderNumber.getAndIncrement(), url, errorMessage
+        services.getCrawlResult().addElement(new ErrorElement(
+                depth, orderNumber.getAndIncrement(), url, "[ERROR] " + message
         ));
     }
 
     private boolean isValidDomain(String url) {
-        return context.config().getAllowedDomains().stream().anyMatch(url::contains);
+        return config.getAllowedDomains().stream().anyMatch(url::contains);
     }
 }
