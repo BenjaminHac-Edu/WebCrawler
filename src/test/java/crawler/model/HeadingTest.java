@@ -1,6 +1,5 @@
 package crawler.model;
 
-import com.webcrawler.crawler.model.BrokenLink;
 import com.webcrawler.crawler.model.Heading;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,7 +33,7 @@ public class HeadingTest {
     }
 
     @Test
-    void testToMarkdownOutput(){
+    void testToMarkdownOutput() {
         String markdown = heading.toMarkdown("-->");
         assertEquals("# --> Section Title", markdown);
     }

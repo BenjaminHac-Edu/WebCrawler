@@ -34,7 +34,7 @@ public class BrokenLinkTest {
     }
 
     @Test
-    void testToMarkdownOutput(){
+    void testToMarkdownOutput() {
         String markdown = brokenLink.toMarkdown("-->");
         assertEquals("<br>--> broken link <a>http://x.com</a>", markdown);
     }

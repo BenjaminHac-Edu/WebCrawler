@@ -28,12 +28,12 @@ public class MarkdownWriterTest {
 
         List<String> markdown = MarkdownWriter.toMarkdownLines(result);
 
-        assertEquals("input: <a>http://example.com</a>", markdown.get(0));
-        assertTrue(markdown.contains("### Results for: <a>http://example.com</a>"));
-        assertTrue(markdown.contains("<br>depth: 1"));
-        assertTrue(markdown.stream().anyMatch(l -> l.contains("Welcome")));
-        assertTrue(markdown.stream().anyMatch(l -> l.contains("link to <a>http://example.com/about</a>")));
-        assertTrue(markdown.stream().anyMatch(l -> l.contains("broken link <a>http://example.com/missing</a>")));
+        assertLineEquals(markdown, 0, "input: <a>http://example.com</a>");
+        assertContains(markdown, "### Results for: <a>http://example.com</a>");
+        assertContains(markdown, "<br>depth: 1");
+        assertContainsText(markdown, "Welcome");
+        assertContains(markdown, "link to <a>http://example.com/about</a>");
+        assertContains(markdown, "broken link <a>http://example.com/missing</a>");
     }
 
     @Test
@@ -47,14 +47,15 @@ public class MarkdownWriterTest {
 
         List<String> markdown = MarkdownWriter.toMarkdownLines(result);
 
-        assertTrue(markdown.contains("### Results for: <a>http://root1.com</a>"));
-        assertTrue(markdown.contains("### Results for: <a>http://root2.com</a>"));
-        assertTrue(markdown.stream().anyMatch(l -> l.contains("Root 1 Heading")));
-        assertTrue(markdown.stream().anyMatch(l -> l.contains("Root 2 Heading")));
+        assertContains(markdown, "### Results for: <a>http://root1.com</a>");
+        assertContains(markdown, "### Results for: <a>http://root2.com</a>");
+        assertContainsText(markdown, "Root 1 Heading");
+        assertContainsText(markdown, "Root 2 Heading");
 
-        int root1Index = markdown.indexOf("### Results for: <a>http://root1.com</a>");
-        int root2Index = markdown.indexOf("### Results for: <a>http://root2.com</a>");
-        assertTrue(root1Index < root2Index); // ensure ordering
+        assertAppearsInOrder(markdown,
+                "### Results for: <a>http://root1.com</a>",
+                "### Results for: <a>http://root2.com</a>"
+        );
     }
 
     @Test
@@ -67,8 +68,8 @@ public class MarkdownWriterTest {
 
         List<String> markdown = MarkdownWriter.toMarkdownLines(result);
 
-        assertTrue(markdown.contains("<br>depth: 1"));
-        assertTrue(markdown.contains("<br>depth: 2"));
+        assertContains(markdown, "<br>depth: 1");
+        assertContains(markdown, "<br>depth: 2");
     }
 
     @Test
@@ -79,7 +80,8 @@ public class MarkdownWriterTest {
         result.addElement(new Heading(3, 1, "http://example.com", "h3", "Indented Heading"));
 
         List<String> markdown = MarkdownWriter.toMarkdownLines(result);
-        assertTrue(markdown.stream().anyMatch(l -> l.contains("-->Indented Heading") || l.contains("--> Indented Heading")));
+
+        assertAnyLineContains(markdown, "-->Indented Heading", "--> Indented Heading");
     }
 
     @Test
@@ -92,8 +94,9 @@ public class MarkdownWriterTest {
         result.addElement(new BrokenLink(3, 2, "http://site.com/about/team", "http://site.com/broken"));
 
         List<String> lines = MarkdownWriter.toMarkdownLines(result);
-        assertTrue(lines.stream().anyMatch(line -> line.contains("depth: 3")));
-        assertTrue(lines.stream().anyMatch(line -> line.contains("broken link")));
+
+        assertContains(lines, "depth: 3");
+        assertContainsText(lines, "broken link");
     }
 
     @Test
@@ -108,9 +111,37 @@ public class MarkdownWriterTest {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line = reader.readLine();
             assertEquals(expected, line);
-        }finally{
-            File file = new File(filename);
-            file.deleteOnExit();
+        } finally {
+            new File(filename).deleteOnExit();
         }
+    }
+
+    private void assertLineEquals(List<String> lines, int index, String expected) {
+        assertTrue(index < lines.size(), "Line index out of range");
+        assertEquals(expected, lines.get(index));
+    }
+
+    private void assertContains(List<String> lines, String expectedSubstring) {
+        assertTrue(lines.stream().anyMatch(l -> l.contains(expectedSubstring)),
+                "Expected to find: " + expectedSubstring);
+    }
+
+    private void assertContainsText(List<String> lines, String text) {
+        assertTrue(lines.stream().anyMatch(line -> line.contains(text)),
+                "Expected some line to contain text: " + text);
+    }
+
+    private void assertAnyLineContains(List<String> lines, String... substrings) {
+        for (String s : substrings) {
+            if (lines.stream().anyMatch(line -> line.contains(s))) return;
+        }
+        fail("Expected at least one line to contain one of: " + String.join(", ", substrings));
+    }
+
+    private void assertAppearsInOrder(List<String> lines, String first, String second) {
+        int idx1 = lines.indexOf(first);
+        int idx2 = lines.indexOf(second);
+        assertTrue(idx1 != -1 && idx2 != -1 && idx1 < idx2,
+                "Expected to find first string before second: " + first + " before " + second);
     }
 }

@@ -87,7 +87,6 @@ public class ConcurrentCrawlerTest {
 
     @Test
     void testBrokenLink_isRecordedAsBrokenLink() throws Exception {
-        // Given
         CrawlerConfig config = new CrawlerConfig("http://site.com", 1, Set.of("site.com").toArray(new String[0]));
         HtmlDocument document = mock(HtmlDocument.class);
         HtmlElement link = mock(HtmlElement.class);
@@ -101,11 +100,9 @@ public class ConcurrentCrawlerTest {
         when(link.getAbsoluteHref()).thenReturn("http://site.com/broken");
         when(checker.isBroken("http://site.com/broken")).thenReturn(true);
 
-        // When
         ConcurrentCrawler crawler = new ConcurrentCrawler(fetcher, checker, 2);
         CrawlResult result = crawler.start(List.of(config));
 
-        // Then
         assertNotNull(result);
         long brokenCount = result.getSortedElements().stream().filter(e -> e instanceof BrokenLink).count();
         assertEquals(1, brokenCount);

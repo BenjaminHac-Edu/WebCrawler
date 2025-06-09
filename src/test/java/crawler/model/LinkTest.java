@@ -34,7 +34,7 @@ public class LinkTest {
     }
 
     @Test
-    void testToMarkdownOutput(){
+    void testToMarkdownOutput() {
         String markdown = link.toMarkdown("-->");
         assertEquals("<br>--> link to <a>http://x.com</a>", markdown);
     }

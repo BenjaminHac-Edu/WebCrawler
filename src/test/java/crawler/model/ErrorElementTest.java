@@ -1,7 +1,6 @@
 package crawler.model;
 
 import com.webcrawler.crawler.model.ErrorElement;
-import com.webcrawler.crawler.model.Link;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

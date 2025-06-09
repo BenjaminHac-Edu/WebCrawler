@@ -15,10 +15,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.CopyOnWriteArraySet;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class CrawlTaskTest {
@@ -111,7 +109,7 @@ public class CrawlTaskTest {
 
         List<PageElement> elements = result.getSortedElements();
         assertEquals(1, elements.size());
-        assertTrue(elements.get(0) instanceof BrokenLink);
+        assertInstanceOf(BrokenLink.class, elements.get(0));
         verify(scheduler, never()).submitTask(any(), anyInt(), any());
     }
 
@@ -141,7 +139,7 @@ public class CrawlTaskTest {
 
         List<PageElement> elements = result.getSortedElements();
         assertEquals(1, elements.size());
-        assertTrue(elements.get(0) instanceof ErrorElement);
+        assertInstanceOf(ErrorElement.class, elements.get(0));
         assertTrue(((ErrorElement) elements.get(0)).getMessage().contains("Fetch error"));
     }
 
