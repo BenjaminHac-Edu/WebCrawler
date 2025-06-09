@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="54985c3f-2603-40f9-87d4-71bb5cd4dd3f" name="Changes" comment="refactor: clean up and extract methods for the testcases">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="54985c3f-2603-40f9-87d4-71bb5cd4dd3f" name="Changes" comment="mics: updated README to give an example how to run the crawling on multiple start url">
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -311,7 +310,7 @@
       <workItem from="1748678115509" duration="675000" />
       <workItem from="1748851035810" duration="4000" />
       <workItem from="1749291515662" duration="2206000" />
-      <workItem from="1749460515208" duration="1289000" />
+      <workItem from="1749460515208" duration="1585000" />
     </task>
     <task id="LOCAL-00001" summary="initial setup">
       <created>1743330681308</created>
@@ -536,7 +535,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749461399243</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="mics: updated README to give an example how to run the crawling on multiple start url">
+      <option name="closed" value="true" />
+      <created>1749461853093</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1749461853093</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -564,7 +571,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor: write crawling result to list of pageElements; convert crawlResult to markdown in class MarkdownWriter" />
     <MESSAGE value="refactor: make PageElement abstract, add classes Heading, Link &amp; BrokenLink that extent from PageElement" />
     <MESSAGE value="test: add testcases for PageElement subclasses" />
     <MESSAGE value="test: add testcases for MarkdownWriter" />
@@ -589,7 +595,8 @@
     <MESSAGE value="refactor: removed not needed depth function parameter" />
     <MESSAGE value="refactor: instead of a record CrawlContext to save needed classes for CrawlTask use a interface to get the classes from ConcurrentCrawler" />
     <MESSAGE value="refactor: clean up and extract methods for the testcases" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: clean up and extract methods for the testcases" />
+    <MESSAGE value="mics: updated README to give an example how to run the crawling on multiple start url" />
+    <option name="LAST_COMMIT_MESSAGE" value="mics: updated README to give an example how to run the crawling on multiple start url" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
