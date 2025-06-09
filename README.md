@@ -41,17 +41,23 @@ mvn test
 Run the crawler from the command line with the following arguments:
 
 ```bash
-java -jar target/webcrawler-jar-with-dependencies.jar <start-url> <depth> <domain1>,<domain2> ...
+java -jar target/webcrawler-jar-with-dependencies.jar <start-url1><start-url2>... <depth> <domain1>,<domain2> ...
 ```
 
 ### Example:
 
 ```bash
-java -jar target/webcrawler-jar-with-dependencies.jar https://example.com 2 example.com,anotherdomain.com
+java -jar target/webcrawler-jar-with-dependencies.jar https://google.com,https://example.com 2 google.com,example.com,iana.org
 ```
 
 Output will be saved to:
 
 ```
 report.md
+```
+
+## Additional information
+The number of threads that should run while crawling the website can be adjusted in the WebCrawler (Main) Class, currently the value is set to:
+```java
+public static final int numberOfAllowedThreads = 8;
 ```
