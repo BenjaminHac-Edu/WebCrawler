@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="54985c3f-2603-40f9-87d4-71bb5cd4dd3f" name="Changes" comment="refactor: rename variables to better names; add empty lines for code structure, etc.">
+    <list default="true" id="54985c3f-2603-40f9-87d4-71bb5cd4dd3f" name="Changes" comment="refactor: clean up and extract methods for the testcases">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/MarkdownWriterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/MarkdownWriterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,11 +16,17 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -35,6 +41,9 @@
     &quot;accountId&quot;: &quot;940e2950-4c99-4e7e-bd33-da0b62ffaa2f&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -51,15 +60,32 @@
     "Application.WebCrawler drauphilharmonie.com depth:2.executor": "Run",
     "Application.WebCrawler example.com depth:2.executor": "Run",
     "Application.WebCrawler example.com depth:3.executor": "Run",
+    "Application.WebCrawler example.com,google.com depth:1.executor": "Run",
+    "Application.WebCrawler example.com,google.com depth:2.executor": "Run",
     "Application.WebCrawler example.com.executor": "Run",
     "Application.WebCrawler google.com 2.executor": "Run",
     "Application.WebCrawler google.com depth:1.executor": "Run",
     "Application.WebCrawler google.com depth:2.executor": "Run",
     "Application.WebCrawler.executor": "Run",
-    "JUnit.All in WebCrawler.executor": "Coverage",
+    "JUnit.All in WebCrawler.executor": "Run",
+    "JUnit.BrokenLinkTest.executor": "Run",
+    "JUnit.ConcurrentCrawlerTest.executor": "Run",
+    "JUnit.ConcurrentCrawlerTest.testConcurrentCrawling_multipleUrls_allProcessed.executor": "Run",
+    "JUnit.CountUpDownLatchTest.executor": "Coverage",
+    "JUnit.CrawlTaskTest.executor": "Run",
     "JUnit.CrawlerTest.executor": "Run",
+    "JUnit.CrawlerTest.testCrawlAddsHeadingAndLink.executor": "Run",
     "JUnit.CrawlerTest.testValidUrl.executor": "Run",
+    "JUnit.ErrorElementTest.executor": "Run",
+    "JUnit.HeadingTest.TestToMarkdownHandlesEmptyMessage.executor": "Run",
+    "JUnit.HeadingTest.executor": "Run",
+    "JUnit.JsoupHtmlDocumentFetcherTest.executor": "Run",
+    "JUnit.JsoupHtmlDocumentTest.executor": "Run",
+    "JUnit.JsoupHtmlElementTest.executor": "Run",
+    "JUnit.JsoupHttpStatusCheckerTest.executor": "Run",
+    "JUnit.LinkTest.executor": "Run",
     "JUnit.MarkdownWriterTest.executor": "Run",
+    "JUnit.MarkdownWriterTest.testDeepElementsAreIncludedInMarkdownOutput.executor": "Run",
     "JUnit.MarkdownWriterTest.testEmptyCrawlResult.executor": "Run",
     "JUnit.MarkdownWriterTest.testIndentationFormatting.executor": "Run",
     "JUnit.MarkdownWriterTest.testMultipleElementsDifferentDepths.executor": "Run",
@@ -68,6 +94,9 @@
     "JUnit.MarkdownWriterTest.testWriteToFile.executor": "Run",
     "JUnit.PageElementTest.executor": "Run",
     "JUnit.UrlHelperTest.executor": "Run",
+    "JUnit.core in WebCrawler.executor": "Run",
+    "JUnit.java in WebCrawler.executor": "Run",
+    "JUnit.output in WebCrawler.executor": "Run",
     "Maven.WebCrawler [clean,compile...].executor": "Run",
     "Maven.WebCrawler [clean,package].executor": "Run",
     "Maven.WebCrawler [clean,test].executor": "Run",
@@ -75,7 +104,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "feat/assignment2",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -83,6 +112,9 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Uni/CleanCode/WebCrawler/src/main/java/org/webcrawler/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "preferences.sourceCode.Java",
     "vue.rearranger.settings.migration": "true"
@@ -95,14 +127,14 @@
       <command value="mvn clean package" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.All in WebCrawler">
+  <component name="RunManager" selected="Application.WebCrawler example.com,google.com depth:2">
     <configuration name="WebCrawler aau.at depth:1" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.webcrawler.WebCrawler" />
       <module name="WebCrawler" />
       <option name="PROGRAM_PARAMETERS" value="https://www.aau.at 1 aau.at" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.webcrawler.crawler.*" />
+          <option name="PATTERN" value="com.webcrawler.output.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -118,13 +150,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="WebCrawler example.com,google.com depth:2" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.webcrawler.WebCrawler" />
+      <module name="WebCrawler" />
+      <option name="PROGRAM_PARAMETERS" value="https://google.com,https://example.com 2 google.com,example.com,iana.org" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="WebCrawler google.com depth:1" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.webcrawler.WebCrawler" />
       <module name="WebCrawler" />
       <option name="PROGRAM_PARAMETERS" value="https://google.com 1 google.com" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.webcrawler.crawler.*" />
+          <option name="PATTERN" value="com.webcrawler.output.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -132,20 +172,47 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All in WebCrawler" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ConcurrentCrawlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WebCrawler" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="crawler.core.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="crawler.core" />
+      <option name="MAIN_CLASS_NAME" value="crawler.core.ConcurrentCrawlerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CrawlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ConcurrentCrawlerTest.testConcurrentCrawling_multipleUrls_allProcessed" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WebCrawler" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CrawlerTest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="crawler.core.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="crawler.core" />
+      <option name="MAIN_CLASS_NAME" value="crawler.core.ConcurrentCrawlerTest" />
+      <option name="METHOD_NAME" value="testConcurrentCrawling_multipleUrls_allProcessed" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CrawlTaskTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="WebCrawler" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="crawler.core.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="crawler.core" />
+      <option name="MAIN_CLASS_NAME" value="crawler.core.CrawlTaskTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -153,50 +220,45 @@
     </configuration>
     <configuration name="MarkdownWriterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WebCrawler" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MarkdownWriterTest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="output.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="output" />
+      <option name="MAIN_CLASS_NAME" value="output.MarkdownWriterTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MarkdownWriterTest.testMultipleElementsDifferentDepths" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="java in WebCrawler" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WebCrawler" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MarkdownWriterTest" />
-      <option name="METHOD_NAME" value="testMultipleElementsDifferentDepths" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MarkdownWriterTest.testWriteToFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="WebCrawler" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MarkdownWriterTest" />
-      <option name="METHOD_NAME" value="testWriteToFile" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.WebCrawler example.com depth:2" />
-      <item itemvalue="Application.WebCrawler google.com depth:1" />
       <item itemvalue="Application.WebCrawler aau.at depth:1" />
-      <item itemvalue="JUnit.MarkdownWriterTest.testWriteToFile" />
-      <item itemvalue="JUnit.CrawlerTest" />
-      <item itemvalue="JUnit.MarkdownWriterTest.testMultipleElementsDifferentDepths" />
-      <item itemvalue="JUnit.All in WebCrawler" />
+      <item itemvalue="Application.WebCrawler example.com depth:2" />
+      <item itemvalue="Application.WebCrawler example.com,google.com depth:2" />
+      <item itemvalue="Application.WebCrawler google.com depth:1" />
       <item itemvalue="JUnit.MarkdownWriterTest" />
+      <item itemvalue="JUnit.ConcurrentCrawlerTest" />
+      <item itemvalue="JUnit.ConcurrentCrawlerTest.testConcurrentCrawling_multipleUrls_allProcessed" />
+      <item itemvalue="JUnit.CrawlTaskTest" />
+      <item itemvalue="JUnit.java in WebCrawler" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.All in WebCrawler" />
-        <item itemvalue="JUnit.MarkdownWriterTest.testWriteToFile" />
-        <item itemvalue="JUnit.CrawlerTest" />
+        <item itemvalue="JUnit.java in WebCrawler" />
         <item itemvalue="JUnit.MarkdownWriterTest" />
-        <item itemvalue="JUnit.MarkdownWriterTest.testMultipleElementsDifferentDepths" />
+        <item itemvalue="JUnit.CrawlTaskTest" />
+        <item itemvalue="JUnit.ConcurrentCrawlerTest" />
+        <item itemvalue="JUnit.ConcurrentCrawlerTest.testConcurrentCrawling_multipleUrls_allProcessed" />
       </list>
     </recent_temporary>
   </component>
@@ -221,7 +283,35 @@
       <workItem from="1744791691968" duration="3084000" />
       <workItem from="1745226153837" duration="1782000" />
       <workItem from="1745339106872" duration="240000" />
-      <workItem from="1745588617412" duration="1736000" />
+      <workItem from="1745588617412" duration="1892000" />
+      <workItem from="1745664692140" duration="927000" />
+      <workItem from="1745738949946" duration="343000" />
+      <workItem from="1745827104191" duration="13000" />
+      <workItem from="1745829645826" duration="2483000" />
+      <workItem from="1745857611465" duration="565000" />
+      <workItem from="1745937892404" duration="1401000" />
+      <workItem from="1746952443311" duration="1990000" />
+      <workItem from="1747036551635" duration="34000" />
+      <workItem from="1747071620909" duration="410000" />
+      <workItem from="1747465937749" duration="36000" />
+      <workItem from="1747469160888" duration="1804000" />
+      <workItem from="1747557151026" duration="1577000" />
+      <workItem from="1747645469741" duration="38000" />
+      <workItem from="1747645607765" duration="604000" />
+      <workItem from="1747758976237" duration="1502000" />
+      <workItem from="1747845199698" duration="1565000" />
+      <workItem from="1747934093465" duration="799000" />
+      <workItem from="1748008098443" duration="133000" />
+      <workItem from="1748069120809" duration="3756000" />
+      <workItem from="1748159262857" duration="4986000" />
+      <workItem from="1748246182542" duration="97000" />
+      <workItem from="1748335292847" duration="801000" />
+      <workItem from="1748364718752" duration="1219000" />
+      <workItem from="1748676177220" duration="21000" />
+      <workItem from="1748678115509" duration="675000" />
+      <workItem from="1748851035810" duration="4000" />
+      <workItem from="1749291515662" duration="2206000" />
+      <workItem from="1749460515208" duration="1289000" />
     </task>
     <task id="LOCAL-00001" summary="initial setup">
       <created>1743330681308</created>
@@ -302,7 +392,151 @@
       <option name="project" value="LOCAL" />
       <updated>1745589961137</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="test: add testcase that test function MarkdownWriter.saveToMarkdown">
+      <option name="closed" value="true" />
+      <created>1745590507801</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1745590507801</updated>
+    </task>
+    <task id="LOCAL-00012" summary="test: delete the test markdownFile after testcase">
+      <option name="closed" value="true" />
+      <created>1745664985696</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1745664985696</updated>
+    </task>
+    <task id="LOCAL-00013" summary="fix: forgot that by heading the number of # depends if it is h1, h2,...">
+      <option name="closed" value="true" />
+      <created>1745831037622</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1745831037622</updated>
+    </task>
+    <task id="LOCAL-00014" summary="refactor: renamed single variable that was not in english">
+      <option name="closed" value="true" />
+      <created>1745857688168</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1745857688168</updated>
+    </task>
+    <task id="LOCAL-00015" summary="refactor: add boundary for the html reader (jsoup)&#10;test: rewrite CrawlerTest.java with mock">
+      <option name="closed" value="true" />
+      <created>1747071999139</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1747071999139</updated>
+    </task>
+    <task id="LOCAL-00016" summary="feat: implement concurrent crawling">
+      <option name="closed" value="true" />
+      <created>1747558658959</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1747558658959</updated>
+    </task>
+    <task id="LOCAL-00017" summary="test: add testcase for concurrentCrawler &amp; CrawlTask">
+      <option name="closed" value="true" />
+      <created>1747760483569</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1747760483569</updated>
+    </task>
+    <task id="LOCAL-00018" summary="feat: reformated the output file;&#10;feat: sorted the found elements depending on the location of the crawled website">
+      <option name="closed" value="true" />
+      <created>1747934871555</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1747934871555</updated>
+    </task>
+    <task id="LOCAL-00019" summary="feat: add better Error Handling, save errors into the report">
+      <option name="closed" value="true" />
+      <created>1748070406818</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1748070406818</updated>
+    </task>
+    <task id="LOCAL-00020" summary="fix: elements from depth 2 or above were not written into the report&#10;feat: add HttpStatusCheckerErrorHandling into the new errorhandling format">
+      <option name="closed" value="true" />
+      <created>1748072545127</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1748072545127</updated>
+    </task>
+    <task id="LOCAL-00021" summary="refactor: change project directory structure; removed unneeded code">
+      <option name="closed" value="true" />
+      <created>1748159397599</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1748159397599</updated>
+    </task>
+    <task id="LOCAL-00022" summary="test: add testcases and refactor them">
+      <option name="closed" value="true" />
+      <created>1748162633012</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1748162633012</updated>
+    </task>
+    <task id="LOCAL-00023" summary="refactor: extract functions, reformat code">
+      <option name="closed" value="true" />
+      <created>1748164789371</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1748164789371</updated>
+    </task>
+    <task id="LOCAL-00024" summary="test: add separate test cases for class Crawl Task">
+      <option name="closed" value="true" />
+      <created>1748365603943</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1748365603943</updated>
+    </task>
+    <task id="LOCAL-00025" summary="fix: found multi-threaded bug, it could happen that page was crawled by more threads if url was not yet stored in visitedUrls object">
+      <option name="closed" value="true" />
+      <created>1748365819285</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1748365819285</updated>
+    </task>
+    <task id="LOCAL-00026" summary="refactor: removed not needed depth function parameter">
+      <option name="closed" value="true" />
+      <created>1748365935936</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1748365935936</updated>
+    </task>
+    <task id="LOCAL-00027" summary="refactor: instead of a record CrawlContext to save needed classes for CrawlTask use a interface to get the classes from ConcurrentCrawler">
+      <option name="closed" value="true" />
+      <created>1749293720426</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1749293720426</updated>
+    </task>
+    <task id="LOCAL-00028" summary="refactor: clean up and extract methods for the testcases">
+      <option name="closed" value="true" />
+      <created>1749461399243</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1749461399243</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,9 +564,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="initial setup" />
-    <MESSAGE value="feat: implement 1st version of the WebCrawler" />
-    <MESSAGE value="feat: write result to a markdown file" />
     <MESSAGE value="refactor: write crawling result to list of pageElements; convert crawlResult to markdown in class MarkdownWriter" />
     <MESSAGE value="refactor: make PageElement abstract, add classes Heading, Link &amp; BrokenLink that extent from PageElement" />
     <MESSAGE value="test: add testcases for PageElement subclasses" />
@@ -340,13 +571,35 @@
     <MESSAGE value="test: add testcases for Crawler" />
     <MESSAGE value="misc: add README.md, able to run project via maven on command-line" />
     <MESSAGE value="refactor: rename variables to better names; add empty lines for code structure, etc." />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: rename variables to better names; add empty lines for code structure, etc." />
+    <MESSAGE value="test: add testcase that test function MarkdownWriter.saveToMarkdown" />
+    <MESSAGE value="test: delete the test markdownFile after testcase" />
+    <MESSAGE value="fix: forgot that by heading the number of # depends if it is h1, h2,..." />
+    <MESSAGE value="refactor: renamed single variable that was not in english" />
+    <MESSAGE value="refactor: add boundary for the html reader (jsoup)&#10;test: rewrite CrawlerTest.java with mock" />
+    <MESSAGE value="feat: implement concurrent crawling" />
+    <MESSAGE value="test: add testcase for concurrentCrawler &amp; CrawlTask" />
+    <MESSAGE value="feat: reformated the output file;&#10;feat: sorted the found elements depending on the location of the crawled website" />
+    <MESSAGE value="feat: add better Error Handling, save errors into the report" />
+    <MESSAGE value="fix: elements from depth 2 or above were not written into the report&#10;feat: add HttpStatusCheckerErrorHandling into the new errorhandling format" />
+    <MESSAGE value="refactor: change project directory structure; removed unneeded code" />
+    <MESSAGE value="test: add testcases and refactor them" />
+    <MESSAGE value="refactor: extract functions, reformat code" />
+    <MESSAGE value="test: add separate test cases for class Crawl Task" />
+    <MESSAGE value="fix: found multi-threaded bug, it could happen that page was crawled by more threads if url was not yet stored in visitedUrls object" />
+    <MESSAGE value="refactor: removed not needed depth function parameter" />
+    <MESSAGE value="refactor: instead of a record CrawlContext to save needed classes for CrawlTask use a interface to get the classes from ConcurrentCrawler" />
+    <MESSAGE value="refactor: clean up and extract methods for the testcases" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: clean up and extract methods for the testcases" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/WebCrawler$All_in_WebCrawler.ic" NAME="All in WebCrawler Coverage Results" MODIFIED="1745589521355" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/WebCrawler$CountUpDownLatchTest.ic" NAME="CountUpDownLatchTest Coverage Results" MODIFIED="1747558129723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>crawler.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/WebCrawler$java_in_WebCrawler.ic" NAME="java in WebCrawler Coverage Results" MODIFIED="1749293526358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/WebCrawler$All_in_WebCrawler.ic" NAME="All in WebCrawler Coverage Results" MODIFIED="1745590389180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>

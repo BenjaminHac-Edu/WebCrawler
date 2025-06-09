@@ -1,17 +1,13 @@
-package com.webcrawler.crawler;
+package com.webcrawler.crawler.model;
 
-public class Heading extends PageElement{
+public class Heading extends PageElement {
     private final int tag;
     private final String content;
 
-    public Heading(int depth, String tagName, String content) {
-        super(depth);
+    public Heading(int depth, int order, String parentUrl, String tagName, String content) {
+        super(depth, order, parentUrl);
         this.tag = Integer.parseInt(tagName.substring(tagName.length() - 1));
         this.content = content;
-    }
-
-    public String getContent() {
-        return content;
     }
 
     @Override

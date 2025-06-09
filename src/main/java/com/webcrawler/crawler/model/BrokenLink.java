@@ -1,10 +1,10 @@
-package com.webcrawler.crawler;
+package com.webcrawler.crawler.model;
 
 public class BrokenLink extends PageElement {
     private final String url;
 
-    public BrokenLink(int depth, String url) {
-        super(depth);
+    public BrokenLink(int depth, int order, String parentUrl, String url) {
+        super(depth, order, parentUrl);
         this.url = url;
     }
 
