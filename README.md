@@ -41,7 +41,7 @@ mvn test
 Run the crawler from the command line with the following arguments:
 
 ```bash
-java -jar target/webcrawler-jar-with-dependencies.jar <start-url1><start-url2>... <depth> <domain1>,<domain2> ...
+java -jar target/webcrawler-jar-with-dependencies.jar <start-url1>,<start-url2>... <depth> <domain1>,<domain2> ...
 ```
 
 ### Example:
